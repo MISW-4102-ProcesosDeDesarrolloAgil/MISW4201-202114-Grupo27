@@ -14,6 +14,7 @@ import { BannerComponent } from './banner/banner.component';
 import { FooterComponent } from './ui/footer/footer.component';
 import { HeaderComponent } from './ui/header/header.component';
 import { SidebarComponent } from './ui/sidebar/sidebar.component';
+import { MainComponent } from './ui/main/main.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { SidebarComponent } from './ui/sidebar/sidebar.component';
     BannerComponent,
     FooterComponent,
     HeaderComponent,
-    SidebarComponent
+    SidebarComponent,
+    MainComponent
   ],
   imports: [
     BrowserModule,
