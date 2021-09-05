@@ -54,6 +54,7 @@ jobs:
 
   release:
     needs: [backend, frontend]
-    runs-on:
-      types: created
-      tags: v1.*
+    runs-on: ubuntu-latest
+    steps:
+      - name: create version 
+      - uses: actions/setup-node@v1.2
