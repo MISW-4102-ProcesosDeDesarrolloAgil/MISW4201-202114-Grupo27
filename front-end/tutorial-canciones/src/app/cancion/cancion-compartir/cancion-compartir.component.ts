@@ -60,7 +60,8 @@ export class CancionCompartirComponent implements OnInit {
 
 compartirCancion(){
   const id = this.compartirCancionForm.get('cancionId')?.value
-  const emails = this.compartirCancionForm.get('emailList')?.value
+  const emailsListStr = this.compartirCancionForm.get('emailList')?.value
+  const emails = emailsListStr?.replace(/\s/g, '')
   const titulo = this.compartirCancionForm.get('titulo')?.value
 
   this.cancionService.compartirCancion(id, emails)

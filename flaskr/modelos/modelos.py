@@ -10,9 +10,9 @@ albumes_canciones = db.Table('album_cancion',
     db.Column('album_id', db.Integer, db.ForeignKey('album.id'), primary_key = True),
     db.Column('cancion_id', db.Integer, db.ForeignKey('cancion.id'), primary_key = True))
 
-cancion_compartida_usuario = db.table('cancion_compartida_usuario',
-    db.Column('cancion_id', db.Integer, db.ForeignKey('cancion.id'), primary_key= True),
-    db.Column('usuario_id', db.Integer, db.ForeignKey('usuario.id'), primary_key= True))
+canciones_compartida_usuarios = db.Table('cancion_compartida_usuario',
+    db.Column('usuario_id', db.Integer, db.ForeignKey('usuario.id'), primary_key = True),
+    db.Column('cancion_id', db.Integer, db.ForeignKey('cancion.id'), primary_key = True))
 
 class Cancion(db.Model):
     id = db.Column(db.Integer, primary_key = True)
@@ -21,7 +21,7 @@ class Cancion(db.Model):
     segundos = db.Column(db.Integer)
     interprete = db.Column(db.String(128))
     albumes = db.relationship('Album', secondary='album_cancion', back_populates="canciones")
-    #usuarios = db.relationship('Usuarios', secondary='cancion_compartida_usuario', back_populates="canciones")
+    usuarios = db.relationship('Usuario', secondary='cancion_compartida_usuario', back_populates="CancionesCompartidas")
 
 class Medio(enum.Enum):
    DISCO = 1
@@ -42,7 +42,7 @@ class Usuario(db.Model):
     nombre = db.Column(db.String(50))
     contrasena = db.Column(db.String(50))
     albumes = db.relationship('Album', cascade='all, delete, delete-orphan')
-    #canciones = db.relationship('CancionesCompartidas', cascade='all, delete, delete-orphan')
+    CancionesCompartidas = db.relationship('Cancion', secondary='cancion_compartida_usuario', back_populates="usuarios")
 
 class EnumADiccionario(fields.Field):
     def _serialize(self, value, attr, obj, **kwargs):

@@ -154,8 +154,11 @@ class VistaCancionesCompartir(Resource):
 
             if len(users) <= 0:
                 return "El usuario no existe", 404
-            else:
-                print(users)
+            else:                
+                for user in users:
+                    print(user.nombre)
+                    user.CancionesCompartidas.append(cancion)  
+            db.session.commit()                              
         else:
             return "Al menos debe existir un email", 404
 
