@@ -1,60 +1,26 @@
-# This is a workflow to push or pull-request the master
-
-name: RELEASE
-
-# Controls when the workflow will run
+name: Release version
 on:
-  # Triggers the workflow on push main or master branch
-  push:
-    branches:
-    - 'master'
-    - 'main'
-  pull_request:
-    branches:
-    - 'master'
-    - 'main'
-
-  # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
-  
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
-jobs:
-  # This workflow contains a single job called "backend"
-  
-  backend:
-    # The type of runner that the job will run on
-    runs-on: ubuntu-latest
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
-    steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v2
-
-      # Runs a single command using the runners shell
-      - name: Install python3, pip and backend
-        run: |
-          cd flaskr
-          sudo pip install -r requirements.txt
-          flask run &
-          
-  frontend:
-    needs: backend
-    # The type of runner that the job will run on
-    runs-on: ubuntu-latest
-    # Steps represent a sequence of tasks that will be executed as part of the job
-    steps:
-      - uses: actions/checkout@v2
-      # Runs a set of commands using the runners shell
-      - name: Install frontend angular
-        run: |
-          cd front-end/tutorial-canciones
-          sudo apt install -y nodejs
-          sudo npm install npm@latest -g
-          sudo npm install -g @angular/cli
-
   release:
-    needs: [backend, frontend]
+    types: [released]
+  workflow_dispatch:
+    inputs:
+      TAG_NAME:
+        description: 'The lonic program'
+        required: true
+
+env:
+  TAG_NAME: ${{ github.event.inputs.TAG_NAME}}
+permissions:
+  contents: write
+
+jobs:
+  program:
+    name: ${{ github.event.inputs.TAG_NAME}}
+    environment:
+      name: NewVersion
     runs-on: ubuntu-latest
     steps:
-      - name: create version 
-      - uses: actions/setup-node@v1.2
+    - name: ${{ env.TAG_NAME }} tag
+      uses: actions/publish-action@v0.1.0
+      with:
+        source-tag: ${{ env.TAG_NAME }}
