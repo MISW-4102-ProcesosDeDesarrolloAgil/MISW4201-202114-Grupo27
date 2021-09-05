@@ -8,10 +8,17 @@ on:
     branches:
       - main
       - master
-  page_build:
-  release:
-    types: created
-    uses: "marvinpinto/action-automatic-releases@latest"
-    with:
-      repo_token: "${{ secrets.GITHUB_TOKEN }}"
-      prerelease: false
+jobs:
+  tagged-release:
+    name: "Release"
+    runs-on: "ubuntu-latest"
+
+    steps:
+      - name: "Build"
+        run: |
+          echo "done!"
+          
+      - uses: "marvinpinto/action-automatic-releases@latest"
+        with:
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          prerelease: false
