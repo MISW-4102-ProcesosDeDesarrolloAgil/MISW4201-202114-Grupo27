@@ -11,24 +11,4 @@ on:
   page_build:
   release:
     types: created
-  workflow_dispatch:
-    inputs:
-      TAG_NAME:
-        description: 'The lonic program'
-        required: true
-env:
-  TAG_NAME: ${{ github.event.inputs.TAG_NAME}}
-permissions:
-  contents: write
 
-jobs:
-  program:
-    name: ${{ github.event.inputs.TAG_NAME}}
-    environment:
-      name: NewVersion
-    runs-on: ubuntu-latest
-    steps:
-    - name: ${{ env.TAG_NAME }} tag
-      uses: actions/publish-action@v0.1.0
-      with:
-        source-tag: ${{ env.TAG_NAME }}
