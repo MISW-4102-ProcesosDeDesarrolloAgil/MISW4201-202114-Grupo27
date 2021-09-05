@@ -1,22 +1,27 @@
-# This is a basic workflow to help you get started with Actions
+# This is a workflow to push or pull-request the master
 
-name: Test install and work
+name: RELEASE
 
 # Controls when the workflow will run
 on:
-  # Triggers the workflow on push or pull request events but only for the master branch
+  # Triggers the workflow on push main or master branch
   push:
-    branches: [ disable ]
+    branches:
+    - 'master'
+    - 'main'
   pull_request:
-    branches: [ master ]
+    branches:
+    - 'master'
+    - 'main'
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
-
+  
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
-  build:
+  # This workflow contains a single job called "backend"
+  
+  backend:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
@@ -26,19 +31,29 @@ jobs:
       - uses: actions/checkout@v2
 
       # Runs a single command using the runners shell
-      - name: Install and running backend
+      - name: Install python3, pip and backend
         run: |
           cd flaskr
           sudo pip install -r requirements.txt
           flask run &
-          echo Backend running.
-
+          
+  frontend:
+    needs: backend
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      - uses: actions/checkout@v2
       # Runs a set of commands using the runners shell
-      - name: Install and running frontend
+      - name: Install frontend angular
         run: |
           cd front-end/tutorial-canciones
           sudo apt install -y nodejs
           sudo npm install npm@latest -g
           sudo npm install -g @angular/cli
-          ng serve &
-          echo frontend running
+
+  release:
+    needs: [backend, frontend]
+    runs-on:
+      types: created
+      tags: v1.*
