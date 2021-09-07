@@ -26,13 +26,16 @@ jobs:
       - name: Install python, pip and backend
         run: |
           cd flaskr
+          sudo apt install python-pytest
           sudo pip install -r requirements.txt
       - name: Test with unittest
         run: |
-            sudo apt install python-pytest
+            cd flaskr
             python2 -m unittest
       - name: Run app
-        run: flask run &
+        run: |
+          cd flaskr
+          flask run &
           
   frontend:
     needs: backend
