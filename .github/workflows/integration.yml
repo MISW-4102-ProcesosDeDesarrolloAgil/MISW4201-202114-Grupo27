@@ -48,7 +48,11 @@ jobs:
           sudo apt install -y nodejs
           sudo npm install npm@latest -g
           sudo npm install -g @angular/cli
-      #- name: Test with unittest
-      #  run: ng test --browsers MyHeadLessBrowser
+      # - name: Test with unittest
+      #  run: |
+      #   cd front-end/tutorial-canciones 
+      #   ng test --browsers MyHeadLessBrowser
       - name: Run App
-        run: ng serve
+        run: |
+          cd front-end/tutorial-canciones
+          ng serve
