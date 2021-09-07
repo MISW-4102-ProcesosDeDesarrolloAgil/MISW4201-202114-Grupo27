@@ -27,7 +27,12 @@ jobs:
         run: |
           cd flaskr
           sudo pip install -r requirements.txt
-          flask run &
+      - name: Test with unittest
+        run: |
+            sudo apt install python-pytest
+            python -m unittest
+      - name: Execution app
+        run: flask run &
           
   frontend:
     needs: backend
@@ -43,3 +48,7 @@ jobs:
           sudo apt install -y nodejs
           sudo npm install npm@latest -g
           sudo npm install -g @angular/cli
+      #- name: Test with unittest
+      #  run: ng test --browsers MyHeadLessBrowser
+      - name: Run App
+        run: ng serve
