@@ -48,6 +48,7 @@ jobs:
           sudo apt install -y nodejs
           sudo npm install npm@latest -g
           sudo npm install -g @angular/cli
+          sudo npm install @angular-devkit/architect
       # - name: Test with unittest
       #  run: |
       #   cd front-end/tutorial-canciones 
@@ -55,4 +56,4 @@ jobs:
       - name: Run App
         run: |
           cd front-end/tutorial-canciones
-          ng serve
+          ng serve &
