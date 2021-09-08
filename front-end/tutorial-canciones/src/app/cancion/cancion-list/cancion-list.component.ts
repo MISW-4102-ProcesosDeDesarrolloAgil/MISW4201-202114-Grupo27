@@ -55,7 +55,7 @@ export class CancionListComponent implements OnInit {
     error => {
       this.showError(`Ha ocurrido un error: ${error.message}`)
     })
-    
+
   }
 
   buscarCancion(busqueda: string){
@@ -89,6 +89,10 @@ export class CancionListComponent implements OnInit {
 
   showSuccess() {
     this.toastr.success(`La canción fue eliminada`, "Eliminada exitosamente");
+  }
+
+  irVentanaCompartirCancion(cancionId: number){
+    this.routerPath.navigate([`/canciones/compartir/${cancionId}/${this.userId}/${this.token}`])
   }
 
 }
