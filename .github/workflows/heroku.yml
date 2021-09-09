@@ -22,6 +22,3 @@ jobs:
           usedocker: true
           appdir: front-end/tutorial-canciones
           docker_build_args: |
-            ENV_TYPE
-        env:
-          ENV_TYPE: production
