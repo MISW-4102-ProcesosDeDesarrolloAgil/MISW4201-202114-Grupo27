@@ -17,12 +17,12 @@ jobs:
         uses: AkhileshNS/heroku-deploy@v3.12.12
         with:
           heroku_api_key: "69a2cd61-e881-4f88-a812-de98c849c5a5"
-          heroku_app_name: "lonic-27-back"
+          heroku_app_name: "back-lonic-27"
           heroku_email: "jl.lopez77@uniandes.edu.co"
           usedocker: true
           appdir: flaskr
 
-  web:
+  front:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -30,7 +30,7 @@ jobs:
         uses: AkhileshNS/heroku-deploy@v3.12.12
         with:
           heroku_api_key: "69a2cd61-e881-4f88-a812-de98c849c5a5"
-          heroku_app_name: "weblonic"
+          heroku_app_name: "front-lonic-27"
           heroku_email: "jl.lopez77@uniandes.edu.co"
           usedocker: true
           appdir: front-end/tutorial-canciones

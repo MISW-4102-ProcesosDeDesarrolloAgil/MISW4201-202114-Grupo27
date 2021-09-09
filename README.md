@@ -1,2 +1,2 @@
 ## Procesos de Desarrollo Ágil
-## Grupo27
+### Grupo27
