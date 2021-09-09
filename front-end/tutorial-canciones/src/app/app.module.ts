@@ -15,7 +15,7 @@ import { FooterComponent } from './ui/footer/footer.component';
 import { HeaderComponent } from './ui/header/header.component';
 import { SidebarComponent } from './ui/sidebar/sidebar.component';
 import { MainComponent } from './ui/main/main.component';
-import { UsuarioHeaderComponent } from './usuario-header/usuario-header.component';
+import { UsuarioHeaderComponent } from './usuario/usuario-header/usuario-header.component';
 
 @NgModule({
   declarations: [

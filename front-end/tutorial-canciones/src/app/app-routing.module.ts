@@ -56,7 +56,7 @@ const routes: Routes = [
     component: CancionEditComponent
   },
   {
-    path : 'main',
+    path : 'main/:userId/:userToken',
     component: MainComponent
   }
 ];
