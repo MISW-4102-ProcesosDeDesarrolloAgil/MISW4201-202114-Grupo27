@@ -1,6 +1,6 @@
 {
     "/api/*":{
-        "target": "baseUrl",
+        "target": "{{environment.baseUrl}}",
         "secure": false,
         "logLevel": "debug",
         "pathRewrite":{

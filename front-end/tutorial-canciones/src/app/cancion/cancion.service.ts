@@ -9,7 +9,7 @@ import { Album } from '../album/album';
 })
 export class CancionService {
 
-  private backUrl: string = "{{baseUrl}}"
+  private backUrl: string = "{{environment.baseUrl}}"
 
   constructor(private http: HttpClient) { }
 

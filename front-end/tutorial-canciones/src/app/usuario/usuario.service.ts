@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
   })
 export class UsuarioService {
 
-    private backUrl: string = "{{baseUrl}}"
+    private backUrl: string = "{{environment.baseUrl}}"
 
     constructor(private http: HttpClient) { }
 
