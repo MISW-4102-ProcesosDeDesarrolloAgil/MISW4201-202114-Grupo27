@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { environment } from "../../environments/environment"
 import { Observable } from 'rxjs';
 import { Album} from './album';
 import { Cancion } from '../cancion/cancion';
@@ -9,7 +10,7 @@ import { Cancion } from '../cancion/cancion';
 })
 export class AlbumService {
 
-  private backUrl: string = "{{environment.baseUrl}}"
+  private backUrl: string = environment.baseUrl
 
   constructor(private http: HttpClient) { }
 
