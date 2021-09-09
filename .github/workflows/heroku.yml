@@ -9,22 +9,6 @@ on:
   workflow_dispatch:
   
 jobs:
-  web:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: Deploy Nginx to serve angular to Heroku
-        uses: AkhileshNS/heroku-deploy@v3.12.12
-        with:
-          heroku_api_key: "69a2cd61-e881-4f88-a812-de98c849c5a5"
-          heroku_app_name: "LONIC"
-          heroku_email: "jl.lopez77@uniandes.edu.co"
-          usedocker: true
-          appdir: front-end/tutorial-canciones
-          docker_build_args: |
-            ENV_TYPE
-        env:
-          ENV_TYPE: production
   back:
     runs-on: ubuntu-latest
     steps:
@@ -33,10 +17,26 @@ jobs:
         uses: AkhileshNS/heroku-deploy@v3.12.12
         with:
           heroku_api_key: "69a2cd61-e881-4f88-a812-de98c849c5a5"
-          heroku_app_name: "LONIC"
+          heroku_app_name: "lonic-27-back"
           heroku_email: "jl.lopez77@uniandes.edu.co"
           usedocker: true
           appdir: flaskr
+          docker_build_args: |
+            ENV_TYPE
+        env:
+          ENV_TYPE: production
+  web:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Deploy Nginx to serve angular to Heroku
+        uses: AkhileshNS/heroku-deploy@v3.12.12
+        with:
+          heroku_api_key: "69a2cd61-e881-4f88-a812-de98c849c5a5"
+          heroku_app_name: "lonic-27-front"
+          heroku_email: "jl.lopez77@uniandes.edu.co"
+          usedocker: true
+          appdir: front-end/tutorial-canciones
           docker_build_args: |
             ENV_TYPE
         env:
