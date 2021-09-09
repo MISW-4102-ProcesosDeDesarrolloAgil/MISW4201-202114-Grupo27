@@ -21,10 +21,10 @@ jobs:
           heroku_email: "jl.lopez77@uniandes.edu.co"
           usedocker: true
           appdir: flaskr
-          docker_build_args: |
-            ENV_TYPE
-        env:
-          ENV_TYPE: production
+         # docker_build_args: |
+          # ENV_TYPE
+       # env:
+         # ENV_TYPE: production
   web:
     needs: back
     runs-on: ubuntu-latest
