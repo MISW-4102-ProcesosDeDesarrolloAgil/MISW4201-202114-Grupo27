@@ -1,3 +1,5 @@
+
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http'
@@ -16,7 +18,7 @@ import { HeaderComponent } from './ui/header/header.component';
 import { SidebarComponent } from './ui/sidebar/sidebar.component';
 import { MainComponent } from './ui/main/main.component';
 import { UsuarioHeaderComponent } from './usuario/usuario-header/usuario-header.component';
-import {MenuComponent} from "./menu/menu.component";
+import { MenuComponent } from "./menu/menu.component";
 
 @NgModule({
   declarations: [
@@ -27,7 +29,8 @@ import {MenuComponent} from "./menu/menu.component";
     SidebarComponent,
     MainComponent,
     UsuarioHeaderComponent,
-    MenuComponent
+    MenuComponent,
+    development
   ],
 
   imports: [
