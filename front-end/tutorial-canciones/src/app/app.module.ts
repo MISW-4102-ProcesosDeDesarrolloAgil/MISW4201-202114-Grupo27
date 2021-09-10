@@ -19,6 +19,7 @@ import { SidebarComponent } from './ui/sidebar/sidebar.component';
 import { MainComponent } from './ui/main/main.component';
 import { UsuarioHeaderComponent } from './usuario/usuario-header/usuario-header.component';
 import { MenuComponent } from "./menu/menu.component";
+import { ColDatePipe } from "./pipes/colDate.pipe";
 
 @NgModule({
   declarations: [
@@ -30,7 +31,7 @@ import { MenuComponent } from "./menu/menu.component";
     MainComponent,
     UsuarioHeaderComponent,
     MenuComponent,
-    development
+    ColDatePipe,
   ],
 
   imports: [
@@ -46,7 +47,8 @@ import { MenuComponent } from "./menu/menu.component";
       positionClass: 'toast-bottom-right',
       preventDuplicates: true,
     }),
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]
