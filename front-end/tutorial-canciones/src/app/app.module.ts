@@ -16,6 +16,7 @@ import { HeaderComponent } from './ui/header/header.component';
 import { SidebarComponent } from './ui/sidebar/sidebar.component';
 import { MainComponent } from './ui/main/main.component';
 import { UsuarioHeaderComponent } from './usuario/usuario-header/usuario-header.component';
+import {MenuComponent} from "./menu/menu.component";
 
 @NgModule({
   declarations: [
@@ -25,9 +26,10 @@ import { UsuarioHeaderComponent } from './usuario/usuario-header/usuario-header.
     HeaderComponent,
     SidebarComponent,
     MainComponent,
-    UsuarioHeaderComponent
+    UsuarioHeaderComponent,
+    MenuComponent
   ],
-  
+
   imports: [
     BrowserModule,
     AppRoutingModule,
