@@ -1,7 +1,18 @@
-name: CI
+name: Continuous_Integration
 
 # Controls when the workflow will run
-@@ -16,15 +17,25 @@ jobs:
+on:
+  # Triggers the workflow on push Lonic-xx branch
+  push:
+    branches:
+    - 'feature/**'
+    - 'development'
+  pull_request:
+    branches: development
+  
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
   backend:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
@@ -12,7 +23,6 @@ name: CI
       - uses: actions/checkout@v2
 
       # Runs a single command using the runners shell
-      - name: Install python3, pip and backend
       - name: Install python, pip and backend
         run: |
           cd flaskr
@@ -28,7 +38,16 @@ name: CI
           flask run &
           
   frontend:
-@@ -41,3 +52,12 @@ jobs:
+    needs: backend
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      - uses: actions/checkout@v2
+      # Runs a set of commands using the runners shell
+      - name: Install frontend angular
+        run: |
+          cd front-end/tutorial-canciones
           sudo apt install -y nodejs
           sudo npm install npm@latest -g
           sudo npm install -g @angular/cli
