@@ -1,13 +1,11 @@
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from "@angular/forms";
-import { BrowserModule } from "@angular/platform-browser";
-
-import { BannerComponent } from './banner.component'
-import { SwiperModule } from 'swiper/angular';
+import { BannerComponent } from './banner.component';
 
 @NgModule({
-  imports: [BrowserModule, CommonModule, FormsModule, SwiperModule],
-  bootstrap: [BannerComponent]
+  declarations: [BannerComponent],
+  imports: [CommonModule, NgbModule],
+  exports: [BannerComponent]
 })
 export class BannerModule { }
