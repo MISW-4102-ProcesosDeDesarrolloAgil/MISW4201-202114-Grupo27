@@ -11,21 +11,10 @@ import { AlbumModule } from './album/album.module';
 import { AppHeaderModule } from './app-header/app-header.module';
 import { CancionModule } from './cancion/cancion.module';
 import { BannerComponent } from './banner/banner.component';
-import { FooterComponent } from './ui/footer/footer.component';
-import { HeaderComponent } from './ui/header/header.component';
-import { SidebarComponent } from './ui/sidebar/sidebar.component';
-import { MainComponent } from './ui/main/main.component';
-import { MenuComponent } from './menu/menu.component';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    BannerComponent,
-    FooterComponent,
-    HeaderComponent,
-    SidebarComponent,
-    MainComponent,
-    MenuComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
