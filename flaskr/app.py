@@ -1,4 +1,3 @@
-from vistas.vistas import VistaUsuario
 from flaskr import create_app
 from flask_restful import Api
 from .modelos import db
@@ -11,7 +10,8 @@ from .vistas import \
     VistaCancionesAlbum, \
     VistaLogIn, \
     VistaAlbumesCanciones, \
-    VistaCancionesCompartir
+    VistaCancionesCompartir, \
+    VistaUsuario
 from flask_jwt_extended import JWTManager
 from flask_cors import CORS, cross_origin
 
