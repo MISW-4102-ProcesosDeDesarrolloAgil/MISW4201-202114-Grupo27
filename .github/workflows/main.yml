@@ -1,20 +1,22 @@
+# This is the end workflow to push or pull_requets in master
 
-name: CI
+name: Release Version
 
 # Controls when the workflow will run
 on:
   # Triggers the workflow on push Lonic-xx branch
   push:
-    branches:
-    - 'feature/**'
-    - 'development'
+    branches-ignore:
+    - '*'
   pull_request:
-    branches: development
+    branches:
+    - 'master'
+    - 'main'
   
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
-  backend:
+  # This workflow contains job called "backend"
+  Backend:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
@@ -31,19 +33,22 @@ jobs:
           sudo pip install -r requirements.txt
       - name: Test with unittest
         run: |
-            cd flaskr
-            python2 -m unittest
-      - name: Run app
+          cd flaskr
+          python2 -m unittest
+      - name: Run flask
         run: |
           cd flaskr
           flask run &
-          
-  frontend:
-    needs: backend
+  
+  # This workflow contains job called "frontend"
+  Frontend:
+    # This job needs job called "backend"
+    needs: Backend
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
       # Runs a set of commands using the runners shell
       - name: Install frontend angular
@@ -53,11 +58,61 @@ jobs:
           sudo npm install npm@latest -g
           sudo npm install -g @angular/cli
           sudo npm install @angular-devkit/architect
-      # - name: Test with unittest
-      #  run: |
-      #   cd front-end/tutorial-canciones 
-      #   ng test --browsers MyHeadLessBrowser
+      - name: Test with unittest
+        run: |
+         cd front-end/tutorial-canciones 
+         ng test --browsers MyHeadLessBrowser
       - name: Run App
         run: |
           cd front-end/tutorial-canciones
           ng serve &
+          
+  # This workflow contains job called "release"
+  Release:
+    # This job needs job called "frontend"
+    needs: Frontend
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+    - uses: actions/checkout@v2
+      with:
+        fetch-depth: '0'
+    - name: Bump version and push tag
+      uses: anothrNick/github-tag-action@1.26.0
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        WITH_V: true
+
+  Deploy_Back:
+    needs: Release  
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Deploy Nginx to serve angular to Heroku
+        uses: AkhileshNS/heroku-deploy@v3.12.12
+        with:
+          heroku_api_key: "69a2cd61-e881-4f88-a812-de98c849c5a5"
+          heroku_app_name: "back-lonic-27"
+          heroku_email: "jl.lopez77@uniandes.edu.co"
+          usedocker: true
+          appdir: flaskr
+
+  Deploy_Front:
+    needs: Deploy_Back
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Deploy Nginx to serve angular to Heroku
+        uses: AkhileshNS/heroku-deploy@v3.12.12
+        with:
+          heroku_api_key: "69a2cd61-e881-4f88-a812-de98c849c5a5"
+          heroku_app_name: "front-lonic-27"
+          heroku_email: "jl.lopez77@uniandes.edu.co"
+          usedocker: true
+          appdir: front-end/tutorial-canciones
+          docker_build_args: |
+            ENV_TYPE
+        env:
+          ENV_TYPE: production
