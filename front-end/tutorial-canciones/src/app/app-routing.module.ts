@@ -53,6 +53,10 @@ const routes: Routes = [
   {
     path: 'canciones/edit/:cancionId/:userId/:userToken',
     component: CancionEditComponent
+  },
+  {
+    path : 'main/:userId/:userToken',
+    component: MainComponent
   }
 ];
 

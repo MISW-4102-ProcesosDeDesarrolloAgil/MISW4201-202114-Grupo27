@@ -29,7 +29,7 @@ export class UsuarioLoginComponent implements OnInit {
     this.usuarioService.userLogIn(nombre, contrasena)
     .subscribe(res => {
       const decodedToken = this.helper.decodeToken(res.token);
-      this.router.navigate([`/albumes/${decodedToken.sub}/${res.token}`])
+      this.router.navigate([`/main/${decodedToken.sub}/${res.token}`])
     },
     error => {
       this.error=true
