@@ -27,6 +27,7 @@ import { UsuarioHeaderComponent } from './usuario/usuario-header/usuario-header.
     MainComponent,
     UsuarioHeaderComponent
   ],
+  
   imports: [
     BrowserModule,
     AppRoutingModule,
