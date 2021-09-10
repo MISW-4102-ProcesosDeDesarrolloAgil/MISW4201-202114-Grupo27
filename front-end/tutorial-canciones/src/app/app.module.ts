@@ -30,7 +30,6 @@ import { MenuComponent } from "./menu/menu.component";
     MainComponent,
     UsuarioHeaderComponent,
     MenuComponent,
-    development
   ],
 
   imports: [
@@ -46,7 +45,8 @@ import { MenuComponent } from "./menu/menu.component";
       positionClass: 'toast-bottom-right',
       preventDuplicates: true,
     }),
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]

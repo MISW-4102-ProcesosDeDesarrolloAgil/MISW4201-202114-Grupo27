@@ -1,5 +1,4 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
-import Swiper from 'swiper';
+import { Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-header-ui',
@@ -8,15 +7,8 @@ import Swiper from 'swiper';
 })
 export class HeaderComponent implements OnInit {
 
-  mySwiper: Swiper;
-
   constructor() { }
 
   ngOnInit(): void {
   }
-
-  ngAfterViewInit() {
-    this.mySwiper = new Swiper('.swiper-container');
-  }
-
 }
