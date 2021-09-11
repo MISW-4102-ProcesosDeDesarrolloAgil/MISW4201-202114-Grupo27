@@ -62,8 +62,8 @@ jobs:
       - name: Test with unittest
         run: |
          cd front-end/tutorial-canciones 
-         ng test --watch=false
-         sudo kill $(sudo lsof -t -i:9876)
+         ng test
+      
       - name: Run App
         run: |
           cd front-end/tutorial-canciones
