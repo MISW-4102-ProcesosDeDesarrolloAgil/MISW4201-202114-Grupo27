@@ -71,7 +71,7 @@ compartirCancion(){
     .subscribe( _ => {
       this.showSuccess(titulo)
       this.compartirCancionForm.reset()
-      this.routerPath.navigate([`/canciones/${this.userId}/${this.token}`])
+      this.routerPath.navigate([`/canciones`])
     },
     error=> {
     if(error.statusText === "UNAUTHORIZED"){

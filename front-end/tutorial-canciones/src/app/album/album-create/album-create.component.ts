@@ -5,6 +5,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { AlbumService } from '../album.service';
 import { Album, Medio } from '../album';
+import { UserService } from 'src/app/shared/services/user.service';
 
 @Component({
   selector: 'app-album-create',
@@ -36,24 +37,25 @@ export class AlbumCreateComponent implements OnInit {
     private formBuilder: FormBuilder,
     private router: ActivatedRoute,
     private toastr: ToastrService,
-    private routerPath: Router
+    private routerPath: Router,
+    private userService: UserService
     ) { }
 
 
   ngOnInit() {
-    if(!parseInt(this.router.snapshot.params.userId) || this.router.snapshot.params.userToken === " "){
-      this.showError("No hemos podido identificarlo, por favor vuelva a iniciar sesión.")
+    const userInfo = this.userService.getUserInfo();
+    if (!userInfo || !userInfo.id) {
+      this.showError("No hemos podido identificarlo, por favor vuelva a iniciar sesión.");
+      return;
     }
-    else{
-      this.userId = parseInt(this.router.snapshot.params.userId)
-      this.token = this.router.snapshot.params.userToken
-      this.albumForm = this.formBuilder.group({
-        titulo: ["", [Validators.required, Validators.minLength(1), Validators.maxLength(128)]],
-        anio: ["", [Validators.required, Validators.minLength(4), Validators.maxLength(4)]],
-        descripcion: ["", [Validators.required, Validators.minLength(1), Validators.maxLength(512)]],
-        medio: ["", [Validators.required]]
-      })
-    }
+    this.userId = parseInt(userInfo.id);
+    this.token = userInfo.token;
+    this.albumForm = this.formBuilder.group({
+      titulo: ["", [Validators.required, Validators.minLength(1), Validators.maxLength(128)]],
+      anio: ["", [Validators.required, Validators.minLength(4), Validators.maxLength(4)]],
+      descripcion: ["", [Validators.required, Validators.minLength(1), Validators.maxLength(512)]],
+      medio: ["", [Validators.required]]
+    })    
   }
 
   showError(error: string){

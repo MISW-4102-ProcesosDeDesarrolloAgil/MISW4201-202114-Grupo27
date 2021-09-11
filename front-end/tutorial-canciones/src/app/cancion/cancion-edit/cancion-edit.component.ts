@@ -34,10 +34,7 @@ export class CancionEditComponent implements OnInit {
       return;
     }
     this.userId = parseInt(userInfo.id);
-    this.token = userInfo.token;
-
-    this.userId = parseInt(this.router.snapshot.params.userId)
-    this.token = this.router.snapshot.params.userToken
+    this.token = userInfo.token;    
     this.cancionService.getCancion(this.router.snapshot.params.cancionId)
     .subscribe(cancion => {
       this.cancionId = cancion.id

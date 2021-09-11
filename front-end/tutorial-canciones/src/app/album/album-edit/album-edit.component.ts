@@ -61,8 +61,6 @@ export class AlbumEditComponent implements OnInit {
         medio: [album.medio.llave, [Validators.required]]
       })
     })
-    //this.userId = parseInt(this.router.snapshot.params.userId)
-    //this.token = this.router.snapshot.params.userToken    
   }
 
   cancelCreate(){

@@ -82,7 +82,7 @@ export class CancionListComponent implements OnInit {
   }
 
   irCrearCancion(){
-    this.routerPath.navigate([`/canciones/create/${this.userId}/${this.token}`])
+    this.routerPath.navigate([`/canciones/create`])
   }
 
   showError(error: string){
