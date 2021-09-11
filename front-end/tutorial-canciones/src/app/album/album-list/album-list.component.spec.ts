@@ -4,6 +4,9 @@ import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
 import { AlbumListComponent } from './album-list.component';
+import {HttpClientTestingModule} from "@angular/common/http/testing";
+import {RouterTestingModule} from "@angular/router/testing";
+import {HttpClient} from "@angular/common/http";
 
 describe('AlbumListComponent', () => {
   let component: AlbumListComponent;
@@ -11,7 +14,8 @@ describe('AlbumListComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AlbumListComponent ]
+      declarations: [ AlbumListComponent ],
+      imports: [RouterTestingModule, HttpClientTestingModule,HttpClient]
     })
     .compileComponents();
   }));
@@ -22,7 +26,4 @@ describe('AlbumListComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
 });

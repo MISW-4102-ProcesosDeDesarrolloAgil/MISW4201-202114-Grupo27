@@ -22,7 +22,4 @@ describe('AlbumJoinCancionComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
 });
