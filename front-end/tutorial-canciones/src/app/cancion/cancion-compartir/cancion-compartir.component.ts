@@ -4,6 +4,7 @@ import {CancionService} from "../cancion.service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
 import {ToastrService} from "ngx-toastr";
+import { UserService } from 'src/app/shared/services/user.service';
 
 @Component({
   selector: 'app-cancion-compartir',
@@ -22,40 +23,42 @@ export class CancionCompartirComponent implements OnInit {
     private formBuilder: FormBuilder,
     private router: ActivatedRoute,
     private routerPath: Router,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private userService: UserService
   ) { }
 
   ngOnInit(): void {
 
     this.emailList = "";
+    const userInfo = this.userService.getUserInfo();
+    if (!userInfo || !userInfo.id) {
+      this.showError("No hemos podido identificarlo, por favor vuelva a iniciar sesión.");
+      return;
+    }
+    this.userId = parseInt(userInfo.id);
+    this.token = userInfo.token;
 
-    if(!parseInt(this.router.snapshot.params.userId) || this.router.snapshot.params.userToken === " "){
+    this.cancionService.getCancion(this.router.snapshot.params.cancionId)
+    .subscribe(cancion => {
+      this.cancionId = cancion.id
+      this.compartirCancionForm = this.formBuilder.group({
+        titulo: [cancion.titulo, [Validators.required]],
+        cancionId: [this.cancionId, [Validators.required]],
+        emailList: [this.emailList, [Validators.required]]
+      })
+    },
+      error=> {
+    if(error.statusText === "UNAUTHORIZED"){
+      this.showWarning("Su sesión ha caducado, por favor vuelva a iniciar sesión.")
+    }
+    else if(error.statusText === "UNPROCESSABLE ENTITY"){
       this.showError("No hemos podido identificarlo, por favor vuelva a iniciar sesión.")
     }
     else{
-      this.userId = parseInt(this.router.snapshot.params.userId)
-      this.token = this.router.snapshot.params.userToken
-      this.cancionService.getCancion(this.router.snapshot.params.cancionId)
-      .subscribe(cancion => {
-        this.cancionId = cancion.id
-        this.compartirCancionForm = this.formBuilder.group({
-          titulo: [cancion.titulo, [Validators.required]],
-          cancionId: [this.cancionId, [Validators.required]],
-          emailList: [this.emailList, [Validators.required]]
-        })
-      },
-        error=> {
-      if(error.statusText === "UNAUTHORIZED"){
-        this.showWarning("Su sesión ha caducado, por favor vuelva a iniciar sesión.")
-      }
-      else if(error.statusText === "UNPROCESSABLE ENTITY"){
-        this.showError("No hemos podido identificarlo, por favor vuelva a iniciar sesión.")
-      }
-      else{
-        this.showError("Ha ocurrido un error. " + error.message)
-      }
-    })
+      this.showError("Ha ocurrido un error. " + error.message)
     }
+    })
+    
   }
 
 compartirCancion(){
@@ -85,7 +88,7 @@ compartirCancion(){
 
  cancelCompartir(){
     this.compartirCancionForm.reset()
-    this.routerPath.navigate([`/canciones/${this.userId}/${this.token}`])
+    this.routerPath.navigate([`/canciones`])
   }
 
   showError(error: string){
