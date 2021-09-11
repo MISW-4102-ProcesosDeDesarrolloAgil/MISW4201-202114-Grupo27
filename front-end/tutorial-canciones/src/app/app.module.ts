@@ -1,3 +1,5 @@
+
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http'
@@ -10,11 +12,28 @@ import { UsuarioModule } from './usuario/usuario.module';
 import { AlbumModule } from './album/album.module';
 import { AppHeaderModule } from './app-header/app-header.module';
 import { CancionModule } from './cancion/cancion.module';
+import { BannerComponent } from './banner/banner.component';
+import { FooterComponent } from './ui/footer/footer.component';
+import { HeaderComponent } from './ui/header/header.component';
+import { SidebarComponent } from './ui/sidebar/sidebar.component';
+import { MainComponent } from './ui/main/main.component';
+import { UsuarioHeaderComponent } from './usuario/usuario-header/usuario-header.component';
+import { MenuComponent } from "./menu/menu.component";
+import { ColDatePipe } from "./pipes/colDate.pipe";
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    BannerComponent,
+    FooterComponent,
+    HeaderComponent,
+    SidebarComponent,
+    MainComponent,
+    UsuarioHeaderComponent,
+    MenuComponent,
+    ColDatePipe,
   ],
+
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -28,7 +47,8 @@ import { CancionModule } from './cancion/cancion.module';
       positionClass: 'toast-bottom-right',
       preventDuplicates: true,
     }),
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,0 +1,51 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-10">
+      <div class="card mx-3 my-5">
+        <div class="row">
+          <div class="col-12 text-center">
+            <p class="mt-5 mb-2 fs-3 fw-bold">Compartir Canción</p>
+          </div>
+        </div>
+
+        <form class="mx-5 my-3" [formGroup]="compartirCancionForm" *ngIf="this.compartirCancionForm" (ngSubmit)="compartirCancion()">
+
+          <div class="form-group my-2">
+
+            <div class="row">
+              <div class="col-12">
+                <input type="hidden" class="form-control" formControlName="cancionId" >
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12">
+                <input type="text" readonly class="form-control" formControlName="titulo" >
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-6 text-start">
+                <label for="descripcion">Debes ingresar al menos un correo electronico para compartir tu cancion </label>
+              </div>
+              <div class="col-6">
+                <textarea class=" form-control" formControlName="emailList" placeholder="email1@example.com,email2@example.com"></textarea>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="row mt-4">
+            <div class="col-6 text-end">
+              <button class="btn btn-danger" (click)="cancelCompartir()">Cancelar</button>
+            </div>
+            <div class="col-6 text-start">
+              <button type="submit" class="btn btn-primary" [disabled]="!compartirCancionForm.valid">Compartir</button>
+            </div>
+          </div>
+
+        </form>
+
+      </div>
+    </div>
+  </div>
+</div>

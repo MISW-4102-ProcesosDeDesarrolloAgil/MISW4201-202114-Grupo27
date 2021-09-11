@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from "ngx-toastr";
+import { UserService } from 'src/app/shared/services/user.service';
 import { Album, Cancion } from '../album';
 import { AlbumService } from '../album.service';
 
@@ -15,9 +16,10 @@ export class AlbumListComponent implements OnInit {
     private albumService: AlbumService,
     private router: ActivatedRoute,
     private toastr: ToastrService,
-    private routerPath: Router
+    private routerPath: Router,
+    private userService: UserService
   ) { }
-  
+
   userId: number
   token: string
   albumes: Array<Album>
@@ -26,102 +28,102 @@ export class AlbumListComponent implements OnInit {
   indiceSeleccionado: number
 
   ngOnInit() {
-    if(!parseInt(this.router.snapshot.params.userId) || this.router.snapshot.params.userToken === " "){
-      this.showError("No hemos podido identificarlo, por favor vuelva a iniciar sesión.")
+    const userInfo = this.userService.getUserInfo();
+    if (!userInfo || !userInfo.id) {
+      this.showError("No hemos podido identificarlo, por favor vuelva a iniciar sesión.");
+      return;
     }
-    else{
-      this.userId = parseInt(this.router.snapshot.params.userId)
-      this.token = this.router.snapshot.params.userToken
-      this.getAlbumes();
-    }
+    this.userId = parseInt(userInfo.id);
+    this.token = userInfo.token;
+    this.getAlbumes();
   }
 
-  getAlbumes():void{
+  getAlbumes(): void {
     this.albumService.getAlbumes(this.userId, this.token)
-    .subscribe(albumes => {
-      this.albumes = albumes
-      this.mostrarAlbumes = albumes
-      if(albumes.length>0){
-        this.onSelect(this.mostrarAlbumes[0], 0)
-      }
-    },
-    error => {
-      console.log(error)
-      if(error.statusText === "UNAUTHORIZED"){
-        this.showWarning("Su sesión ha caducado, por favor vuelva a iniciar sesión.")
-      }
-      else if(error.statusText === "UNPROCESSABLE ENTITY"){
-        this.showError("No hemos podido identificarlo, por favor vuelva a iniciar sesión.")
-      }
-      else{
-        this.showError("Ha ocurrido un error. " + error.message)
-      }
-    })
-    
+      .subscribe(albumes => {
+        this.albumes = albumes
+        this.mostrarAlbumes = albumes
+        if (albumes.length > 0) {
+          this.onSelect(this.mostrarAlbumes[0], 0)
+        }
+      },
+        error => {
+          console.log(error)
+          if (error.statusText === "UNAUTHORIZED") {
+            this.showWarning("Su sesión ha caducado, por favor vuelva a iniciar sesión.")
+          }
+          else if (error.statusText === "UNPROCESSABLE ENTITY") {
+            this.showError("No hemos podido identificarlo, por favor vuelva a iniciar sesión.")
+          }
+          else {
+            this.showError("Ha ocurrido un error. " + error.message)
+          }
+        })
+
   }
 
-  onSelect(a: Album, index: number){
+  onSelect(a: Album, index: number) {
     this.indiceSeleccionado = index
     this.albumSeleccionado = a
     this.albumService.getCancionesAlbum(a.id, this.token)
-    .subscribe(canciones => {
-      this.albumSeleccionado.canciones = canciones
-      this.albumSeleccionado.interpretes = this.getInterpretes(canciones)
-    },
-    error =>{
-      this.showError("Ha ocurrido un error, " + error.message)
-    })
+      .subscribe(canciones => {
+        this.albumSeleccionado.canciones = canciones
+        this.albumSeleccionado.interpretes = this.getInterpretes(canciones)
+      },
+        error => {
+          this.showError("Ha ocurrido un error, " + error.message)
+        })
   }
 
-  getInterpretes(canciones: Array<Cancion>): Array<string>{
+  getInterpretes(canciones: Array<Cancion>): Array<string> {
     var interpretes: Array<string> = []
-    canciones.map( c => {
-      if(!interpretes.includes(c.interprete)){
+    canciones.map(c => {
+      if (!interpretes.includes(c.interprete)) {
         interpretes.push(c.interprete)
       }
     })
     return interpretes
   }
 
-  buscarAlbum(busqueda: string){
+  buscarAlbum(busqueda: string) {
     let albumesBusqueda: Array<Album> = []
-    this.albumes.map( albu => {
-      if( albu.titulo.toLocaleLowerCase().includes(busqueda.toLowerCase())){
+    this.albumes.map(albu => {
+      if (albu.titulo.toLocaleLowerCase().includes(busqueda.toLowerCase())) {
         albumesBusqueda.push(albu)
       }
     })
     this.mostrarAlbumes = albumesBusqueda
   }
 
-  irCrearAlbum(){
-    this.routerPath.navigate([`/albumes/create/${this.userId}/${this.token}`])
+  irCrearAlbum() {
+    this.routerPath.navigate([`/albumes/create`])
   }
 
-  eliminarAlbum(){
+  eliminarAlbum() {
     this.albumService.eliminarAlbum(this.userId, this.token, this.albumSeleccionado.id)
-    .subscribe(album => {
-      this.ngOnInit();
-      this.showSuccess();
-    },
-    error=> {
-      if(error.statusText === "UNAUTHORIZED"){
-        this.showWarning("Su sesión ha caducado, por favor vuelva a iniciar sesión.")
-      }
-      else if(error.statusText === "UNPROCESSABLE ENTITY"){
-        this.showError("No hemos podido identificarlo, por favor vuelva a iniciar sesión.")
-      }
-      else{
-        this.showError("Ha ocurrido un error. " + error.message)
-      }
-    })
+      .subscribe(album => {
+        this.ngOnInit();
+        this.showSuccess();
+      },
+        error => {
+          if (error.statusText === "UNAUTHORIZED") {
+            this.showWarning("Su sesión ha caducado, por favor vuelva a iniciar sesión.")
+          }
+          else if (error.statusText === "UNPROCESSABLE ENTITY") {
+            this.showError("No hemos podido identificarlo, por favor vuelva a iniciar sesión.")
+          }
+          else {
+            this.showError("Ha ocurrido un error. " + error.message)
+          }
+        })
     this.ngOnInit()
   }
 
-  showError(error: string){
+  showError(error: string) {
     this.toastr.error(error, "Error de autenticación")
   }
 
-  showWarning(warning: string){
+  showWarning(warning: string) {
     this.toastr.warning(warning, "Error de autenticación")
   }
 

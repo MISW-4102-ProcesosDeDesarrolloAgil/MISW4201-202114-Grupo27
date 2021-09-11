@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { UserService } from 'src/app/shared/services/user.service';
 import { Cancion } from '../cancion';
 import { CancionService } from '../cancion.service';
 
@@ -21,23 +22,24 @@ export class CancionCreateComponent implements OnInit {
     private formBuilder: FormBuilder,
     private router: ActivatedRoute,
     private routerPath: Router,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private userService: UserService
   ) { }
 
   ngOnInit() {
-    if(!parseInt(this.router.snapshot.params.userId) || this.router.snapshot.params.userToken === " "){
-      this.showError("No hemos podido identificarlo, por favor vuelva a iniciar sesión.")
+    const userInfo = this.userService.getUserInfo();
+    if (!userInfo || !userInfo.id) {
+      this.showError("No hemos podido identificarlo, por favor vuelva a iniciar sesión.");
+      return;
     }
-    else{
-      this.userId = parseInt(this.router.snapshot.params.userId)
-      this.token = this.router.snapshot.params.userToken
-      this.cancionForm = this.formBuilder.group({
-        titulo: ["", [Validators.required, Validators.maxLength(128)]],
-        minutos: ["", [Validators.required, Validators.pattern("^[0-9]*$"), Validators.maxLength(2)]],
-        segundos: ["", [Validators.required, Validators.pattern("^[0-9]*$"), Validators.maxLength(2)]],
-        interprete: ["", [Validators.required, Validators.maxLength(128)]]
-      })
-    }
+    this.userId = parseInt(userInfo.id);
+    this.token = userInfo.token;
+    this.cancionForm = this.formBuilder.group({
+      titulo: ["", [Validators.required, Validators.maxLength(128)]],
+      minutos: ["", [Validators.required, Validators.pattern("^[0-9]*$"), Validators.maxLength(2)]],
+      segundos: ["", [Validators.required, Validators.pattern("^[0-9]*$"), Validators.maxLength(2)]],
+      interprete: ["", [Validators.required, Validators.maxLength(128)]]
+    })    
   }
 
   createCancion(newCancion: Cancion){
@@ -47,7 +49,7 @@ export class CancionCreateComponent implements OnInit {
     .subscribe(cancion => {
       this.showSuccess(cancion)
       this.cancionForm.reset()
-      this.routerPath.navigate([`/canciones/${this.userId}/${this.token}`])
+      this.routerPath.navigate([`/canciones`])
     },
     error=> {
       if(error.statusText === "UNAUTHORIZED"){
@@ -64,7 +66,7 @@ export class CancionCreateComponent implements OnInit {
 
   cancelCreate(){
     this.cancionForm.reset()
-    this.routerPath.navigate([`/canciones/${this.userId}/${this.token}`])
+    this.routerPath.navigate([`/canciones`])
   }
 
   showError(error: string){

@@ -1,6 +1,8 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { UserService } from 'src/app/shared/services/user.service';
 import { Cancion } from '../cancion';
+import { ToastrService } from "ngx-toastr";
 
 @Component({
   selector: 'app-cancion-detail',
@@ -17,13 +19,23 @@ export class CancionDetailComponent implements OnInit {
 
   constructor(
     private router: ActivatedRoute,
-    private routerPath: Router
+    private routerPath: Router,
+    private toastr: ToastrService,
+    private userService: UserService
   ) { }
 
   ngOnInit() {
-    this.userId = parseInt(this.router.snapshot.params.userId)
-    this.token = this.router.snapshot.params.userToken
-    
+    const userInfo = this.userService.getUserInfo();
+    if (!userInfo || !userInfo.id) {
+      this.showError("No hemos podido identificarlo, por favor vuelva a iniciar sesión.");
+      return;
+    }   
+    this.userId = parseInt(userInfo.id);
+    this.token = userInfo.token;
+  }
+
+  showError(error: string) {
+    this.toastr.error(error, "Error de autenticación")
   }
 
   eliminarCancion(){
@@ -31,7 +43,6 @@ export class CancionDetailComponent implements OnInit {
   }
 
   goToEdit(){
-    this.routerPath.navigate([`/canciones/edit/${this.cancion.id}/${this.userId}/${this.token}`])
+    this.routerPath.navigate([`/canciones/edit/${this.cancion.id}`])
   }
-
 }

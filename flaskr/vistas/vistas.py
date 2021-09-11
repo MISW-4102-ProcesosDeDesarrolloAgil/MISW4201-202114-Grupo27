@@ -78,6 +78,10 @@ class VistaLogIn(Resource):
             token_de_acceso = create_access_token(identity = usuario.id)
             return {"mensaje":"Inicio de sesión exitoso", "token": token_de_acceso}
 
+class VistaUsuario(Resource):
+    def get(self, id_usuario):
+        return album_schema.dump(Usuario.query.get_or_404(id_usuario))
+
 class VistaAlbumsUsuario(Resource):
 
     @jwt_required()
@@ -141,4 +145,30 @@ class VistaAlbum(Resource):
         db.session.delete(album)
         db.session.commit()
         return '',204
+
+class VistaCancionesCompartir(Resource):
+
+    def put(self, cancionId):
+        cancion = Cancion.query.get_or_404(cancionId)
+        if "emails" in request.json.keys():
+            email_list = request.json["emails"]
+            user_list = email_list.split(',')
+            print(user_list)
+            users = Usuario.query.filter(Usuario.nombre.in_(user_list)).all()
+
+            if len(users) <= 0:
+                return "El usuario no existe", 404
+            else:                
+                for user in users:
+                    print(user.nombre)
+                    user.CancionesCompartidas.append(cancion)  
+            db.session.commit()                              
+        else:
+            return "Al menos debe existir un email", 404
+
+        return cancion_schema.dump(cancion)
+        #return {"mensaje": "Inicio de sesión exitoso", "token": token_de_acceso}
+
+
+
 

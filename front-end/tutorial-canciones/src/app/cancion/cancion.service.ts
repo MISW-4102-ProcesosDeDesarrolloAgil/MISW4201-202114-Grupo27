@@ -45,4 +45,7 @@ export class CancionService {
     return this.http.delete<Cancion>(`${this.backUrl}/cancion/${cancionId}`)
   }
 
+  compartirCancion(cancionId: number, emails: string): Observable<Cancion>{
+    return this.http.put<Cancion>(`${this.backUrl}/cancion/${cancionId}/compartir`, {"emails" : emails})
+  }
 }
