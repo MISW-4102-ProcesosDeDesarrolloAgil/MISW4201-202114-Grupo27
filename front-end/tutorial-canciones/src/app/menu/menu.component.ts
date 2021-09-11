@@ -18,16 +18,14 @@ export class MenuComponent implements OnInit {
   }
 
   goTo(menu: string){
-    const userId = parseInt(this.router.snapshot.params.userId)
-    const token = this.router.snapshot.params.userToken
     if(menu === "logIn"){
-      this.routerPath.navigate([`/`])
+      this.routerPath.navigate([`/signin`])
     }
     else if(menu === "album"){
-      this.routerPath.navigate([`/albumes/${userId}/${token}`])
+      this.routerPath.navigate([`/albumes`])
     }
     else{
-      this.routerPath.navigate([`/canciones/${userId}/${token}`])
+      this.routerPath.navigate([`/canciones`])
     }
   }
 }

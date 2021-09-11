@@ -6,6 +6,13 @@
       <app-banner></app-banner>
     </div>
   </div>
-  <router-outlet></router-outlet>
+  <div class="layout">
+    <div class="sidebar" *ngIf="showSidebar">
+      <app-sidebar></app-sidebar>
+    </div>
+    <div class="content">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
   <app-footer></app-footer>
 </div>

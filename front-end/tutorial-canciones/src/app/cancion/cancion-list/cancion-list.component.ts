@@ -3,6 +3,7 @@ import { Cancion } from '../cancion';
 import { CancionService } from '../cancion.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { UserService } from 'src/app/shared/services/user.service';
 
 @Component({
   selector: 'app-cancion-list',
@@ -15,7 +16,8 @@ export class CancionListComponent implements OnInit {
     private cancionService: CancionService,
     private routerPath: Router,
     private router: ActivatedRoute,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private userService: UserService
   ) { }
 
   userId: number
@@ -26,14 +28,14 @@ export class CancionListComponent implements OnInit {
   indiceSeleccionado: number = 0
 
   ngOnInit() {
-    if(!parseInt(this.router.snapshot.params.userId) || this.router.snapshot.params.userToken === " "){
-      this.showError("No hemos podido identificarlo, por favor vuelva a iniciar sesión.")
+    const userInfo = this.userService.getUserInfo();
+    if (!userInfo || !userInfo.id) {
+      this.showError("No hemos podido identificarlo, por favor vuelva a iniciar sesión.");
+      return;
     }
-    else{
-      this.userId = parseInt(this.router.snapshot.params.userId)
-      this.token = this.router.snapshot.params.userToken
-      this.getCanciones();
-    }
+    this.userId = parseInt(userInfo.id);
+    this.token = userInfo.token;
+    this.getCanciones();
   }
 
   getCanciones():void{
@@ -80,7 +82,7 @@ export class CancionListComponent implements OnInit {
   }
 
   irCrearCancion(){
-    this.routerPath.navigate([`/canciones/create/${this.userId}/${this.token}`])
+    this.routerPath.navigate([`/canciones/create`])
   }
 
   showError(error: string){
@@ -92,7 +94,7 @@ export class CancionListComponent implements OnInit {
   }
 
   irVentanaCompartirCancion(cancionId: number){
-    this.routerPath.navigate([`/canciones/compartir/${cancionId}/${this.userId}/${this.token}`])
+    this.routerPath.navigate([`/canciones/compartir/${cancionId}`])
   }
 
 }

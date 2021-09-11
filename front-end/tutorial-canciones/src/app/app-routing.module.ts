@@ -10,11 +10,12 @@ import { CancionEditComponent } from './cancion/cancion-edit/cancion-edit.compon
 import { AlbumJoinCancionComponent } from './album/album-join-cancion/album-join-cancion.component';
 import { UsuarioSignupComponent } from './usuario/usuario-signup/usuario-signup.component';
 import {MainComponent} from "./ui/main/main.component";
+import {CancionCompartirComponent} from "./cancion/cancion-compartir/cancion-compartir.component";
 
 const routes: Routes = [
   {
     path: '',
-    component: UsuarioLoginComponent,
+    redirectTo: 'main',
     pathMatch: 'full'
   },
   {
@@ -28,36 +29,40 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: 'albumes/:userId/:userToken',
+    path: 'albumes',
     component: AlbumListComponent
   },
   {
-    path: 'albumes/create/:userId/:userToken',
+    path: 'albumes/create',
     component: AlbumCreateComponent
   },
   {
-    path: 'albumes/edit/:albumId/:userId/:userToken',
+    path: 'albumes/edit/:albumId',
     component: AlbumEditComponent
   },
   {
-    path: 'albumes/join/:albumId/:userId/:userToken',
+    path: 'albumes/join/:albumId',
     component: AlbumJoinCancionComponent
   },
   {
-    path: 'canciones/:userId/:userToken',
+    path: 'canciones',
     component: CancionListComponent
   },
   {
-    path: 'canciones/create/:userId/:userToken',
+    path: 'canciones/create',
     component: CancionCreateComponent
   },
   {
-    path: 'canciones/edit/:cancionId/:userId/:userToken',
+    path: 'canciones/edit/:cancionId',
     component: CancionEditComponent
   },
   {
-    path : 'main/:userId/:userToken',
+    path : 'main',
     component: MainComponent
+  },
+  {
+    path: 'canciones/compartir/:cancionId',
+    component: CancionCompartirComponent
   }
 ];
 
