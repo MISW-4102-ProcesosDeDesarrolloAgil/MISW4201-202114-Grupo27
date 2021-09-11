@@ -57,7 +57,7 @@ const routes: Routes = [
   },
   {
     path : 'main/:userId/:userToken',
-    component: MainComponent
+    loadChildren: './core/core.module#CoreModule'
   }
 ];
 
