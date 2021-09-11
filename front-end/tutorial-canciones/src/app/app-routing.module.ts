@@ -33,15 +33,15 @@ const routes: Routes = [
     component: AlbumListComponent
   },
   {
-    path: 'albumes/create/:userId/:userToken',
+    path: 'albumes/create',
     component: AlbumCreateComponent
   },
   {
-    path: 'albumes/edit/:albumId/:userId/:userToken',
+    path: 'albumes/edit/:albumId',
     component: AlbumEditComponent
   },
   {
-    path: 'albumes/join/:albumId/:userId/:userToken',
+    path: 'albumes/join/:albumId',
     component: AlbumJoinCancionComponent
   },
   {
@@ -49,11 +49,11 @@ const routes: Routes = [
     component: CancionListComponent
   },
   {
-    path: 'canciones/create/:userId/:userToken',
+    path: 'canciones/create',
     component: CancionCreateComponent
   },
   {
-    path: 'canciones/edit/:cancionId/:userId/:userToken',
+    path: 'canciones/edit/:cancionId',
     component: CancionEditComponent
   },
   {

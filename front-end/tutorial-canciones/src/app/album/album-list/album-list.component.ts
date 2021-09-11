@@ -96,7 +96,7 @@ export class AlbumListComponent implements OnInit {
   }
 
   irCrearAlbum() {
-    this.routerPath.navigate([`/albumes/create/${this.userId}/${this.token}`])
+    this.routerPath.navigate([`/albumes/create`])
   }
 
   eliminarAlbum() {

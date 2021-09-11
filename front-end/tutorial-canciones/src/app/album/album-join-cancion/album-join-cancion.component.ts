@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Cancion } from 'src/app/cancion/cancion';
 import { CancionService } from 'src/app/cancion/cancion.service';
+import { UserService } from 'src/app/shared/services/user.service';
 import { Album} from '../album';
 import { AlbumService } from '../album.service';
 
@@ -27,28 +28,32 @@ export class AlbumJoinCancionComponent implements OnInit {
     private formBuilder: FormBuilder,
     private router: ActivatedRoute,
     private routerPath: Router,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private userService: UserService
   ) { }
 
   ngOnInit() {
-    if(!parseInt(this.router.snapshot.params.userId) || this.router.snapshot.params.userToken === " "){
-      this.showError("No hemos podido identificarlo, por favor vuelva a iniciar sesión.")
+    const userInfo = this.userService.getUserInfo();
+    if (!userInfo || !userInfo.id) {
+      this.showError("No hemos podido identificarlo, por favor vuelva a iniciar sesión.");
+      return;
     }
-    else{
-      this.userId = parseInt(this.router.snapshot.params.userId)
-      this.token = this.router.snapshot.params.userToken
-      this.albumId = this.router.snapshot.params.albumId
-      this.albumService.getAlbum(this.albumId)
-      .subscribe(album => {
-        this.album = album
-        this.albumCancionForm = this.formBuilder.group({
-          tituloAlbum: [album.titulo, [Validators.required]],
-          idCancion: ["", [Validators.required]],
-          tituloCancion: ["", [Validators.required]]
-        })
-        this.getCanciones(album.canciones)
+    this.userId = parseInt(userInfo.id);
+    this.token = userInfo.token;
+
+    //this.userId = parseInt(this.router.snapshot.params.userId)
+    //this.token = this.router.snapshot.params.userToken
+    this.albumId = this.router.snapshot.params.albumId
+    this.albumService.getAlbum(this.albumId)
+    .subscribe(album => {
+      this.album = album
+      this.albumCancionForm = this.formBuilder.group({
+        tituloAlbum: [album.titulo, [Validators.required]],
+        idCancion: ["", [Validators.required]],
+        tituloCancion: ["", [Validators.required]]
       })
-    }
+      this.getCanciones(album.canciones)
+    })    
   }
 
   getCanciones(cancionesAlbum: Array<any>){
@@ -66,7 +71,7 @@ export class AlbumJoinCancionComponent implements OnInit {
 
   cancelarAsociacion(){
     this.albumCancionForm.reset()
-    this.routerPath.navigate([`/albumes/${this.userId}/${this.token}`])
+    this.routerPath.navigate([`/albumes`])
   }
 
   asociarCancion(){
@@ -74,7 +79,7 @@ export class AlbumJoinCancionComponent implements OnInit {
     .subscribe(cancion => {
       this.showSuccess(this.albumCancionForm.get('tituloAlbum')?.value, cancion.titulo)
       this.albumCancionForm.reset()
-      this.routerPath.navigate([`/albumes/${this.userId}/${this.token}`])
+      this.routerPath.navigate([`/albumes`])
     },
     error=> {
       if(error.statusText === "UNPROCESSABLE ENTITY"){

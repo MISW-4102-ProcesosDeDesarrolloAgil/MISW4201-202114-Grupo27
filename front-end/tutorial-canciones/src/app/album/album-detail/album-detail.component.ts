@@ -26,11 +26,11 @@ export class AlbumDetailComponent implements OnInit {
   }
 
   goToEdit(){
-    this.routerPath.navigate([`/albumes/edit/${this.album.id}/${this.userId}/${this.token}`])
+    this.routerPath.navigate([`/albumes/edit/${this.album.id}`])
   }
 
   goToJoinCancion(){
-    this.routerPath.navigate([`/albumes/join/${this.album.id}/${this.userId}/${this.token}`])
+    this.routerPath.navigate([`/albumes/join/${this.album.id}`])
   }
   
   eliminarAlbum(){
