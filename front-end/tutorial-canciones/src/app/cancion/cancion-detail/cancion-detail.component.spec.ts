@@ -4,6 +4,8 @@ import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
 import { CancionDetailComponent } from './cancion-detail.component';
+import {HttpClientTestingModule} from "@angular/common/http/testing";
+import {RouterTestingModule} from "@angular/router/testing";
 
 describe('CancionDetailComponent', () => {
   let component: CancionDetailComponent;
@@ -11,7 +13,8 @@ describe('CancionDetailComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CancionDetailComponent ]
+      declarations: [ CancionDetailComponent ],
+      imports: [RouterTestingModule, HttpClientTestingModule]
     })
     .compileComponents();
   }));
@@ -20,9 +23,5 @@ describe('CancionDetailComponent', () => {
     fixture = TestBed.createComponent(CancionDetailComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
-  });
-
-  it('should create', () => {
-    expect(component).toBeTruthy();
   });
 });
