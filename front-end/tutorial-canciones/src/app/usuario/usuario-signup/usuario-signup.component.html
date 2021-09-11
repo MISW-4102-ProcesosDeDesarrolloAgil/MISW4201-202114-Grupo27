@@ -14,7 +14,7 @@
           <h1 class="text-center">Registro</h1>
         </div>
 
-        <form [formGroup]="usuarioForm" (ngSubmit)="registrarUsuario()">
+        <form [formGroup]="usuarioForm" *ngIf="this.usuarioForm" (ngSubmit)="registrarUsuario()">
 
           <div class="form-group">
             <div class="mb-3 row">

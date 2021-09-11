@@ -8,7 +8,7 @@
           </div>
         </div>
 
-        <form class="mx-5 my-3" [formGroup]="cancionForm" (ngSubmit)="editarCancion(cancionForm.value)">
+        <form class="mx-5 my-3" [formGroup]="cancionForm" *ngIf="this.cancionForm" (ngSubmit)="editarCancion(cancionForm.value)">
 
           <div class="form-group my-2">
             <div class="row">
