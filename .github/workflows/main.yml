@@ -56,12 +56,12 @@ jobs:
           cd front-end/tutorial-canciones
           sudo apt install -y nodejs
           sudo npm install npm@latest -g
-          sudo npm install -g @angular/cli
+          sudo npm install -g @angular/cli@latest
           sudo npm install @angular-devkit/architect
       - name: Test with unittest
         run: |
          cd front-end/tutorial-canciones 
-        # ng test
+         ng test
       - name: Run App
         run: |
           cd front-end/tutorial-canciones
