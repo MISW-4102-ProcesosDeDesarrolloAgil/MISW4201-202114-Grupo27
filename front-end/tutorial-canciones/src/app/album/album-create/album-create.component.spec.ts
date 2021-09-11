@@ -4,6 +4,7 @@ import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
 import { AlbumCreateComponent } from './album-create.component';
+import {HttpClientTestingModule} from "@angular/common/http/testing";
 
 describe('AlbumCreateComponent', () => {
   let component: AlbumCreateComponent;
@@ -11,7 +12,8 @@ describe('AlbumCreateComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AlbumCreateComponent ]
+      declarations: [ AlbumCreateComponent ],
+      imports: [HttpClientTestingModule]
     })
     .compileComponents();
   }));
@@ -22,7 +24,4 @@ describe('AlbumCreateComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
 });
