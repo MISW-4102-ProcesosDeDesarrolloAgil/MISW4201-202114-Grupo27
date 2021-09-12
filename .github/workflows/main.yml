@@ -62,7 +62,7 @@ jobs:
       - name: Test with unittest
         run: |
          cd front-end/tutorial-canciones 
-         ng test --browsers ChromeHeadless
+         ng test --watch --browsers ChromeHeadless
       - name: Run App
         run: |
           cd front-end/tutorial-canciones
