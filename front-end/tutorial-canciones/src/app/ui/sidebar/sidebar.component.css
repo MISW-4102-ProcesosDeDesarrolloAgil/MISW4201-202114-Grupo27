@@ -3,7 +3,7 @@
   margin: 0;
   padding: 0;
   width: 200px;
-  background-color: #F2F2F2;
+  background-color: #530000;
   border-radius: 1rem;
   border: 1px solid lightgrey;
   height: 100%;
@@ -12,19 +12,19 @@
 
 .sidebar a {
   display: block;
-  color: black;
+  color: #ece7e7;
   padding: 16px;
   text-decoration: none;
 }
 
 
 .sidebar a.active {
-  background-color: #b82323;
+  background-color: #a9191f;
   color: white;
 }
 
 .sidebar a:hover:not(.active) {
-  background-color: #b82323;
+  background-color: #a9191f;
   color: #1e1c1c;
 }
 
