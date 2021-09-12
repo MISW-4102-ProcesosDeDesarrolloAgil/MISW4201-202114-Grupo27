@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container-fluid">
   <div class="row">
     <div class="col-4"><img src="assets/images/header/logo.png">
     </div>
@@ -6,13 +6,23 @@
       <app-banner></app-banner>
     </div>
   </div>
+  <div class="row">
+    <div class="col-md-3" *ngIf="showSidebar">
+      <app-sidebar></app-sidebar>
+    </div>
+    <div class="col-md-9 main-section">
+      <router-outlet></router-outlet>
+    </div>
+
+  <!--/div>
   <div class="layout">
-    <div class="sidebar" *ngIf="showSidebar">
+    <div class="col-md-3 left-aside d-none d-md-block" *ngIf="showSidebar">
       <app-sidebar></app-sidebar>
     </div>
     <div class="content">
       <router-outlet></router-outlet>
     </div>
-  </div>
+  </div-->
   <app-footer></app-footer>
+</div>
 </div>
