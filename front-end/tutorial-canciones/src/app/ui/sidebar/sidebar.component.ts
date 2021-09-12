@@ -7,7 +7,6 @@ import {ActivatedRoute, Router} from "@angular/router";
   styleUrls: ['./sidebar.component.css']
 })
 export class SidebarComponent implements OnInit {
-
   constructor(
     private routerPath: Router,
     private router: ActivatedRoute) {
