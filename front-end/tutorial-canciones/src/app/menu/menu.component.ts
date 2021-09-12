@@ -24,8 +24,11 @@ export class MenuComponent implements OnInit {
     else if(menu === "album"){
       this.routerPath.navigate([`/albumes`])
     }
-    else{
+    else if(menu === "cancion"){
       this.routerPath.navigate([`/canciones`])
+    }
+    else{
+      this.routerPath.navigate([`/about`])
     }
   }
 }

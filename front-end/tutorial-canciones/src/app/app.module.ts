@@ -20,6 +20,7 @@ import { MainComponent } from './ui/main/main.component';
 import { UsuarioHeaderComponent } from './usuario/usuario-header/usuario-header.component';
 import { MenuComponent } from "./menu/menu.component";
 import { ColDatePipe } from "./pipes/colDate.pipe";
+import { AboutComponent } from './about/about.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { ColDatePipe } from "./pipes/colDate.pipe";
     UsuarioHeaderComponent,
     MenuComponent,
     ColDatePipe,
+    AboutComponent,
   ],
 
   imports: [
