@@ -11,6 +11,7 @@ import { AlbumJoinCancionComponent } from './album/album-join-cancion/album-join
 import { UsuarioSignupComponent } from './usuario/usuario-signup/usuario-signup.component';
 import {MainComponent} from "./ui/main/main.component";
 import {CancionCompartirComponent} from "./cancion/cancion-compartir/cancion-compartir.component";
+import { AboutComponent } from './about/about.component';
 
 const routes: Routes = [
   {
@@ -63,6 +64,10 @@ const routes: Routes = [
   {
     path: 'canciones/compartir/:cancionId',
     component: CancionCompartirComponent
+  },
+  {
+    path: 'about',
+    component: AboutComponent
   }
 ];
 
