@@ -37,4 +37,4 @@ jobs:
           docker_build_args: |
             ENV_TYPE
         env:
-          ENV_TYPE: pruebas
+          ENV_TYPE: desarrollo
