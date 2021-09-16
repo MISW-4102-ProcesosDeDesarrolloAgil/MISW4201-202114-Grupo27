@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { Cancion } from 'src/app/cancion/cancion';
-import { CancionService } from 'src/app/cancion/cancion.service';
+import { Cancion } from 'src/app/components/cancion/cancion';
+import { CancionService } from 'src/app/components/cancion/cancion.service';
 import { UserService } from 'src/app/shared/services/user.service';
 import { Album} from '../album';
 import { AlbumService } from '../album.service';
@@ -50,7 +50,7 @@ export class AlbumJoinCancionComponent implements OnInit {
         tituloCancion: ["", [Validators.required]]
       })
       this.getCanciones(album.canciones)
-    })    
+    })
   }
 
   getCanciones(cancionesAlbum: Array<any>){

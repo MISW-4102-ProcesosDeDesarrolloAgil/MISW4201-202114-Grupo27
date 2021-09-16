@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CancionListComponent } from './cancion-list/cancion-list.component';
-import { AppHeaderModule } from '../app-header/app-header.module';
 import { CancionDetailComponent } from './cancion-detail/cancion-detail.component';
 import { CancionCreateComponent } from './cancion-create/cancion-create.component';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -12,7 +11,7 @@ import { CancionCompartirComponent } from './cancion-compartir/cancion-compartir
 @NgModule({
   declarations: [CancionListComponent, CancionDetailComponent, CancionCreateComponent, CancionEditComponent, CancionCompartirComponent],
   imports: [
-    CommonModule, AppHeaderModule, ReactiveFormsModule
+    CommonModule, ReactiveFormsModule
   ],
   exports:[CancionListComponent, CancionDetailComponent, CancionCreateComponent, CancionEditComponent, CancionCompartirComponent]
 })

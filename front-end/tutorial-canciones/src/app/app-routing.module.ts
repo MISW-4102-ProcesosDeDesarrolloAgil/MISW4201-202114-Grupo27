@@ -1,17 +1,17 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { UsuarioLoginComponent } from './usuario/usuario-login/usuario-login.component';
-import { AlbumListComponent } from './album/album-list/album-list.component';
-import { AlbumCreateComponent } from './album/album-create/album-create.component';
-import { AlbumEditComponent } from './album/album-edit/album-edit.component';
-import { CancionListComponent } from './cancion/cancion-list/cancion-list.component';
-import { CancionCreateComponent } from './cancion/cancion-create/cancion-create.component';
-import { CancionEditComponent } from './cancion/cancion-edit/cancion-edit.component';
-import { AlbumJoinCancionComponent } from './album/album-join-cancion/album-join-cancion.component';
-import { UsuarioSignupComponent } from './usuario/usuario-signup/usuario-signup.component';
-import {MainComponent} from "./ui/main/main.component";
-import {CancionCompartirComponent} from "./cancion/cancion-compartir/cancion-compartir.component";
-import { AboutComponent } from './about/about.component';
+import { UsuarioLoginComponent } from './components/usuario/usuario-login/usuario-login.component';
+import { AlbumListComponent } from './components/album/album-list/album-list.component';
+import { AlbumCreateComponent } from './components/album/album-create/album-create.component';
+import { AlbumEditComponent } from './components/album/album-edit/album-edit.component';
+import { CancionListComponent } from './components/cancion/cancion-list/cancion-list.component';
+import { CancionCreateComponent } from './components/cancion/cancion-create/cancion-create.component';
+import { CancionEditComponent } from './components/cancion/cancion-edit/cancion-edit.component';
+import { AlbumJoinCancionComponent } from './components/album/album-join-cancion/album-join-cancion.component';
+import { UsuarioSignupComponent } from './components/usuario/usuario-signup/usuario-signup.component';
+import {MainComponent} from "./pages/main/main.component";
+import {CancionCompartirComponent} from "./components/cancion/cancion-compartir/cancion-compartir.component";
+import { AboutComponent } from './pages/about/about.component';
 
 const routes: Routes = [
   {

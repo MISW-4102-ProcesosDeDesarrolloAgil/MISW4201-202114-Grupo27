@@ -1,4 +1,6 @@
+import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { ColDatePipe } from '../../pipes/colDate.pipe';
 
 @Component({
   selector: 'app-footer',

@@ -8,19 +8,18 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { UsuarioModule } from './usuario/usuario.module';
-import { AlbumModule } from './album/album.module';
-import { AppHeaderModule } from './app-header/app-header.module';
-import { CancionModule } from './cancion/cancion.module';
-import { BannerComponent } from './banner/banner.component';
-import { FooterComponent } from './ui/footer/footer.component';
-import { HeaderComponent } from './ui/header/header.component';
-import { SidebarComponent } from './ui/sidebar/sidebar.component';
-import { MainComponent } from './ui/main/main.component';
-import { UsuarioHeaderComponent } from './usuario/usuario-header/usuario-header.component';
-import { MenuComponent } from "./menu/menu.component";
+import { UsuarioModule } from './components/usuario/usuario.module';
+import { AlbumModule } from './components/album/album.module';
+import { CancionModule } from './components/cancion/cancion.module';
+import { BannerComponent } from './components/banner/banner.component';
+import { FooterComponent } from './pages/footer/footer.component';
+import { HeaderComponent } from './pages/header/header.component';
+import { SidebarComponent } from './pages/sidebar/sidebar.component';
+import { MainComponent } from './pages/main/main.component';
+import { UsuarioHeaderComponent } from './components/usuario/usuario-header/usuario-header.component';
+import { MenuComponent } from "./components/menu/menu.component";
 import { ColDatePipe } from "./pipes/colDate.pipe";
-import { AboutComponent } from './about/about.component';
+import { AboutComponent } from './pages/about/about.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +42,6 @@ import { AboutComponent } from './about/about.component';
     UsuarioModule,
     AlbumModule,
     CancionModule,
-    AppHeaderModule,
     ToastrModule.forRoot({
       timeOut: 7000,
       positionClass: 'toast-bottom-right',
