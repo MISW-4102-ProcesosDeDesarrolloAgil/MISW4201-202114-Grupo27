@@ -3,8 +3,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { Album, Medio } from '../album';
-import { AlbumService } from '../album.service';
-import { UserService } from 'src/app/shared/services/user.service';
+import { AlbumService } from '../../../services/album.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-album-edit',
@@ -33,7 +33,7 @@ export class AlbumEditComponent implements OnInit {
   ]
 
   constructor(
-    
+
     private albumService: AlbumService,
     private formBuilder: FormBuilder,
     private router: ActivatedRoute,

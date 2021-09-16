@@ -1,5 +1,5 @@
 import { Component, OnInit, Input} from '@angular/core';
-import { UsuarioService } from '../usuario.service';
+import { UsuarioService } from '../../../services/usuario.service';
 import { Usuario } from '../usuario';
 
 @Component({
@@ -8,7 +8,7 @@ import { Usuario } from '../usuario';
   styleUrls: ['./usuario-header.component.css']
 })
 export class UsuarioHeaderComponent implements OnInit {
- 
+
   @Input() usuario_id: number;
   usuario : Usuario
 

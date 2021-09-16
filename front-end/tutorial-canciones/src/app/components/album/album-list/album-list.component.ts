@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from "ngx-toastr";
-import { UserService } from 'src/app/shared/services/user.service';
+import { UserService } from 'src/app/services/user.service';
 import { Album, Cancion } from '../album';
-import { AlbumService } from '../album.service';
+import { AlbumService } from '../../../services/album.service';
 
 @Component({
   selector: 'app-album-list',

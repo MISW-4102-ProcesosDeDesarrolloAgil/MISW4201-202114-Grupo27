@@ -3,10 +3,10 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Cancion } from 'src/app/components/cancion/cancion';
-import { CancionService } from 'src/app/components/cancion/cancion.service';
-import { UserService } from 'src/app/shared/services/user.service';
+import { CancionService } from '../../../services/cancion.service';
+import { UserService } from 'src/app/services/user.service';
 import { Album} from '../album';
-import { AlbumService } from '../album.service';
+import { AlbumService } from '../../../services/album.service';
 
 @Component({
   selector: 'app-album-join-cancion',

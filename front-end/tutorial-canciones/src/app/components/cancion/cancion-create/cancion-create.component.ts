@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { UserService } from 'src/app/shared/services/user.service';
+import { UserService } from 'src/app/services/user.service';
 import { Cancion } from '../cancion';
-import { CancionService } from '../cancion.service';
+import { CancionService } from '../../../services/cancion.service';
 
 @Component({
   selector: 'app-cancion-create',
@@ -39,7 +39,7 @@ export class CancionCreateComponent implements OnInit {
       minutos: ["", [Validators.required, Validators.pattern("^[0-9]*$"), Validators.maxLength(2)]],
       segundos: ["", [Validators.required, Validators.pattern("^[0-9]*$"), Validators.maxLength(2)]],
       interprete: ["", [Validators.required, Validators.maxLength(128)]]
-    })    
+    })
   }
 
   createCancion(newCancion: Cancion){

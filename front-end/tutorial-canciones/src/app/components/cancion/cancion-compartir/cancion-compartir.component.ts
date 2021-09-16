@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {Cancion} from "../cancion";
-import {CancionService} from "../cancion.service";
+import {CancionService} from "../../../services/cancion.service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
 import {ToastrService} from "ngx-toastr";
-import { UserService } from 'src/app/shared/services/user.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-cancion-compartir',
@@ -58,7 +58,7 @@ export class CancionCompartirComponent implements OnInit {
       this.showError("Ha ocurrido un error. " + error.message)
     }
     })
-    
+
   }
 
 compartirCancion(){

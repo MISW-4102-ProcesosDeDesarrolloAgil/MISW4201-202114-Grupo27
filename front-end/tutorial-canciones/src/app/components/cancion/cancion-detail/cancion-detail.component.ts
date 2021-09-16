@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { UserService } from 'src/app/shared/services/user.service';
+import { UserService } from 'src/app/services/user.service';
 import { Cancion } from '../cancion';
 import { ToastrService } from "ngx-toastr";
 
@@ -29,7 +29,7 @@ export class CancionDetailComponent implements OnInit {
     if (!userInfo || !userInfo.id) {
       this.showError("No hemos podido identificarlo, por favor vuelva a iniciar sesión.");
       return;
-    }   
+    }
     this.userId = parseInt(userInfo.id);
     this.token = userInfo.token;
   }

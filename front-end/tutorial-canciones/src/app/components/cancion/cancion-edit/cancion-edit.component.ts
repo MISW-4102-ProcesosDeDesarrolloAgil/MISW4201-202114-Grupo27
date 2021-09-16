@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { UserService } from 'src/app/shared/services/user.service';
+import { UserService } from 'src/app/services/user.service';
 import { Cancion } from '../cancion';
-import { CancionService } from '../cancion.service';
+import { CancionService } from '../../../services/cancion.service';
 
 @Component({
   selector: 'app-cancion-edit',
@@ -34,7 +34,7 @@ export class CancionEditComponent implements OnInit {
       return;
     }
     this.userId = parseInt(userInfo.id);
-    this.token = userInfo.token;    
+    this.token = userInfo.token;
     this.cancionService.getCancion(this.router.snapshot.params.cancionId)
     .subscribe(cancion => {
       this.cancionId = cancion.id
@@ -44,7 +44,7 @@ export class CancionEditComponent implements OnInit {
         segundos: [cancion.segundos, [Validators.required, Validators.pattern("^[0-9]*$"), Validators.maxLength(2)]],
         interprete: [cancion.interprete, [Validators.required, Validators.maxLength(128)]]
       })
-    })    
+    })
   }
 
   cancelCreate(){

@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { environment } from "../../../environments/environment"
+import { environment } from "../../environments/environment"
 import { Observable } from 'rxjs';
-import { Album} from './album';
-import { Cancion } from '../cancion/cancion';
+import { Album} from '../../app/components/album/album';
+import { Cancion } from '../../app/components/cancion/cancion';
 
 @Injectable({
   providedIn: 'root'

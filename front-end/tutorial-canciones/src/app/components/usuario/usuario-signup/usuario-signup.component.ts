@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { UsuarioService } from '../usuario.service';
+import { UsuarioService } from '../../../services/usuario.service';
 import { JwtHelperService } from "@auth0/angular-jwt";
 
 
@@ -32,7 +32,7 @@ export class UsuarioSignupComponent implements OnInit {
     })
   }
 
-  registrarUsuario(){  
+  registrarUsuario(){
     this.usuarioService.userSignUp(this.usuarioForm.get('nombre')?.value, this.usuarioForm.get('password')?.value)
     .subscribe(res => {
       const decodedToken = this.helper.decodeToken(res.token);

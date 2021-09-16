@@ -3,9 +3,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-import { AlbumService } from '../album.service';
+import { AlbumService } from '../../../services/album.service';
 import { Album, Medio } from '../album';
-import { UserService } from 'src/app/shared/services/user.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-album-create',
@@ -55,7 +55,7 @@ export class AlbumCreateComponent implements OnInit {
       anio: ["", [Validators.required, Validators.minLength(4), Validators.maxLength(4)]],
       descripcion: ["", [Validators.required, Validators.minLength(1), Validators.maxLength(512)]],
       medio: ["", [Validators.required]]
-    })    
+    })
   }
 
   showError(error: string){

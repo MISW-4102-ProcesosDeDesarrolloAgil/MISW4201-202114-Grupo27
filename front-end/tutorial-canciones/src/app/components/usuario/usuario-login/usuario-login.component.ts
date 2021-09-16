@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Usuario } from '../usuario';
 import { JwtHelperService } from "@auth0/angular-jwt";
-import { UsuarioService } from '../usuario.service';
+import { UsuarioService } from '../../../services/usuario.service';
 import { Router } from '@angular/router';
-import { UserService } from 'src/app/shared/services/user.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-usuario-login',
@@ -19,7 +19,7 @@ export class UsuarioLoginComponent implements OnInit {
     private router: Router,
     private userService: UserService
     ) { }
-  
+
   error: boolean = false
 
   ngOnInit() {
@@ -27,7 +27,7 @@ export class UsuarioLoginComponent implements OnInit {
 
   onLogInUsuario(nombre: string, contrasena: string){
     this.error = false
-    
+
     this.usuarioService.userLogIn(nombre, contrasena)
     .subscribe(res => {
       const decodedToken = this.helper.decodeToken(res.token);
