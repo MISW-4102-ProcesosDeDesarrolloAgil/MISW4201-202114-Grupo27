@@ -9,5 +9,4 @@ DatePipe implements PipeTransform {
 transform(value: any, args?: any): any {
 return super.transform(value, 'dd/MM/yyyy');
   }
-
 }
