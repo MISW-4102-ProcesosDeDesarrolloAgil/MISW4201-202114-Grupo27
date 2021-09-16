@@ -1,8 +1,6 @@
 footer {
-  position: fixed;
-  height: auto;
-  bottom: 0;
-  max-width: 100%;
+  position: relative;
+  bottom: auto;
 }
 
 .col-12 {

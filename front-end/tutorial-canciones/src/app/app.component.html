@@ -1,18 +1,20 @@
 <div class="container-fluid">
-  <div class="row">
-    <div class="col-12">
-      <app-header-ui></app-header-ui>
+  <app-header-ui></app-header-ui>
+    <div class="row">
+      <div class="col-12">
+        <div class="row">
+          <div class="col-md-3" *ngIf="showSidebar">
+            <app-sidebar></app-sidebar>
+          </div>
+          <div class="col-md-9 main-section">
+           <router-outlet></router-outlet>
+          </div>
+          <div class="col-md-12">
+            <div class="footer">
+              <app-footer></app-footer>
+          </div>
+           </div>
+        </div>
+      </div>
     </div>
   </div>
-  <div class="row">
-    <div class="col-md-3" *ngIf="showSidebar">
-      <app-sidebar></app-sidebar>
-    </div>
-    <div class="col-md-9 main-section">
-      <router-outlet></router-outlet>
-    </div>
-    <div class="col-12">
-      <app-footer></app-footer>
-    </div>
-  </div>
-</div>
