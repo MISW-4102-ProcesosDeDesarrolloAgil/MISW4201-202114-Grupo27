@@ -1,1 +1,12 @@
+.row {
+  justify-content: center;
+  height: 75%;
+}
+
+.img-responsive {
+  width: auto;
+  height: auto;
+  margin-left: 2%;
+  margin-right: 2%;
+}
 

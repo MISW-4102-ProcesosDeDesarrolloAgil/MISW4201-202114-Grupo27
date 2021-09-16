@@ -1,54 +1,36 @@
+.row {
+  justify-content: center;
+}
 
 .header {
   overflow: hidden;
   background-color: #f1f1f1;
+  align-content: center;
   padding: 20px 10px;
 }
 
-
-.header a {
-  float: left;
-  color: black;
-  text-align: center;
-  padding: 12px;
-  text-decoration: none;
-  font-size: 18px;
-  line-height: 25px;
-  border-radius: 4px;
+.img-responsive {
+  width: auto;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-.header a.logo {
-  font-size: 25px;
-  font-weight: bold;
+.col-md-2 {
+  position: relative;
+  width: 100px;
+  top: 1%;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
 }
 
-.header a:hover {
-  background-color: #fcfafa;
-  color: black;
+#alogo {
+  position: relative;
+  width: 100px;
+  top: 1%;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
 }
-
-.header a.active {
-  background-color: dodgerblue;
-  color: white;
-}
-
-.header-right {
-  float: right;
-}
-
-@media screen and (max-width: 500px) {
-  .header a {
-    float: none;
-    display: block;
-    text-align: left;
-  }
-  .header-right {
-    float: none;
-  }
-}
-@media(min-width:576px){}
-@media(min-width:768px){}
-@media(min-width:992px){}
-@media(min-width:1200px){}
-@media(min-width:1400px){}
-

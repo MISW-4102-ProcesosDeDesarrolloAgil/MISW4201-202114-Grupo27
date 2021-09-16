@@ -1,4 +1,21 @@
-div.user-image > img{
-    width: 60px;
-    border-radius: 60px;
-    }
+.avatar{
+  justify-content: center;
+  text-align: center;
+}
+
+.img-responsive {
+  max-width: 100%;
+  height: auto;
+  display:block;
+}
+
+#avuser {
+  position: relative;
+  width: 100px;
+  top: 1%;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+}
+

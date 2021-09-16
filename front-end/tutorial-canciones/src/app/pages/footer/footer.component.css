@@ -1,6 +1,12 @@
 footer {
   position: fixed;
-  height: 100px;
+  height: auto;
   bottom: 0;
-  width: 100%;
+  max-width: 100%;
+}
+
+.col-12 {
+  background-color: rgba(0, 0, 0, 0.2);
+  text-align: center;
+  height: auto;
 }
