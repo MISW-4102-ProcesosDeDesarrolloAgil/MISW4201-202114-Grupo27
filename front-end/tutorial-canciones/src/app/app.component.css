@@ -4,7 +4,14 @@
 
 .footer {
   position: relative;
+  margin-top: 10px;
   bottom: 0;
   width: 98%;
   bottom: 0;
+  margin-left: 2px;
 }
+
+.col-md-3 {
+  margin-top: 1%;
+  margin-left: 1%;
+ }
