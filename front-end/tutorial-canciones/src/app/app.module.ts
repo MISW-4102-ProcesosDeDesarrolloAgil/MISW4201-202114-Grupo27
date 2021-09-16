@@ -25,7 +25,6 @@ import { ColDatePipe } from "./pipes/colDate.pipe";
     BannerComponent,
     FooterComponent,
     HeaderComponent,
-    SidebarComponent,
     MainComponent,
     MenuComponent,
     ColDatePipe,
@@ -37,6 +36,7 @@ import { ColDatePipe } from "./pipes/colDate.pipe";
     AppRoutingModule,
     HttpClientModule,
     ComponentsModule,
+    SidebarComponent,
     ToastrModule.forRoot({
       timeOut: 7000,
       positionClass: 'toast-bottom-right',
