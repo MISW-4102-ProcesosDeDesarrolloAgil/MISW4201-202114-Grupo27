@@ -9,8 +9,8 @@ import { CancionCreateComponent } from './components/cancion/cancion-create/canc
 import { CancionEditComponent } from './components/cancion/cancion-edit/cancion-edit.component';
 import { AlbumJoinCancionComponent } from './components/album/album-join-cancion/album-join-cancion.component';
 import { UsuarioSignupComponent } from './components/usuario/usuario-signup/usuario-signup.component';
-import {MainComponent} from "./pages/main/main.component";
-import {CancionCompartirComponent} from "./components/cancion/cancion-compartir/cancion-compartir.component";
+import { MainComponent } from "./pages/main/main.component";
+import { CancionCompartirComponent } from "./components/cancion/cancion-compartir/cancion-compartir.component";
 import { AboutComponent } from './pages/about/about.component';
 
 const routes: Routes = [

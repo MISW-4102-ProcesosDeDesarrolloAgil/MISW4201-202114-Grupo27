@@ -9,10 +9,23 @@ import { CancionCompartirComponent } from './cancion-compartir/cancion-compartir
 
 
 @NgModule({
-  declarations: [CancionListComponent, CancionDetailComponent, CancionCreateComponent, CancionEditComponent, CancionCompartirComponent],
-  imports: [
-    CommonModule, ReactiveFormsModule
+  declarations: [
+    CancionListComponent,
+    CancionDetailComponent,
+    CancionCreateComponent,
+    CancionEditComponent,
+    CancionCompartirComponent
   ],
-  exports:[CancionListComponent, CancionDetailComponent, CancionCreateComponent, CancionEditComponent, CancionCompartirComponent]
+  imports: [
+    CommonModule,
+    ReactiveFormsModule
+  ],
+  exports:[
+    CancionListComponent,
+    CancionDetailComponent,
+    CancionCreateComponent,
+    CancionEditComponent,
+    CancionCompartirComponent
+  ]
 })
 export class CancionModule { }

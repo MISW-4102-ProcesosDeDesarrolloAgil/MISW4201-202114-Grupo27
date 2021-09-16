@@ -9,10 +9,23 @@ import { AlbumJoinCancionComponent } from './album-join-cancion/album-join-canci
 
 
 @NgModule({
-  declarations: [AlbumListComponent, AlbumDetailComponent, AlbumCreateComponent, AlbumEditComponent, AlbumJoinCancionComponent],
-  imports: [
-    CommonModule, ReactiveFormsModule
+  declarations: [
+    AlbumListComponent,
+    AlbumDetailComponent,
+    AlbumCreateComponent,
+    AlbumEditComponent,
+    AlbumJoinCancionComponent
   ],
-  exports:[AlbumListComponent, AlbumDetailComponent, AlbumCreateComponent, AlbumEditComponent, AlbumJoinCancionComponent]
+  imports: [
+    CommonModule,
+    ReactiveFormsModule
+  ],
+  exports:[
+    AlbumListComponent,
+    AlbumDetailComponent,
+    AlbumCreateComponent,
+    AlbumEditComponent,
+    AlbumJoinCancionComponent
+  ]
 })
 export class AlbumModule { }

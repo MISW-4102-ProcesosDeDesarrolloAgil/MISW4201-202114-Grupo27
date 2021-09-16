@@ -8,18 +8,16 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { UsuarioModule } from './components/usuario/usuario.module';
-import { AlbumModule } from './components/album/album.module';
-import { CancionModule } from './components/cancion/cancion.module';
+import { ComponentsModule } from '../app/components/components.module';
 import { BannerComponent } from './components/banner/banner.component';
+import { MenuComponent } from "./components/menu/menu.component";
+import { AboutComponent } from './pages/about/about.component';
 import { FooterComponent } from './pages/footer/footer.component';
 import { HeaderComponent } from './pages/header/header.component';
-import { SidebarComponent } from './pages/sidebar/sidebar.component';
 import { MainComponent } from './pages/main/main.component';
-import { UsuarioHeaderComponent } from './components/usuario/usuario-header/usuario-header.component';
-import { MenuComponent } from "./components/menu/menu.component";
+import { SidebarComponent } from './pages/sidebar/sidebar.component';
 import { ColDatePipe } from "./pipes/colDate.pipe";
-import { AboutComponent } from './pages/about/about.component';
+
 
 @NgModule({
   declarations: [
@@ -29,19 +27,16 @@ import { AboutComponent } from './pages/about/about.component';
     HeaderComponent,
     SidebarComponent,
     MainComponent,
-    UsuarioHeaderComponent,
     MenuComponent,
     ColDatePipe,
-    AboutComponent,
+    AboutComponent
   ],
 
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    UsuarioModule,
-    AlbumModule,
-    CancionModule,
+    ComponentsModule,
     ToastrModule.forRoot({
       timeOut: 7000,
       positionClass: 'toast-bottom-right',
@@ -49,6 +44,17 @@ import { AboutComponent } from './pages/about/about.component';
     }),
     BrowserAnimationsModule,
     NgbModule
+  ],
+  exports : [
+    BannerComponent,
+    FooterComponent,
+    HeaderComponent,
+    SidebarComponent,
+    MainComponent,
+    MenuComponent,
+    ColDatePipe,
+    AboutComponent
+
   ],
   providers: [],
   bootstrap: [AppComponent]
