@@ -1,5 +1,5 @@
 export const environment = {
   production: false,
-  title: 'Dev Enviroment Heading',
+  title: 'Test Enviroment Heading',
   baseUrl:"https://back-lonic-27.herokuapp.com"
 };
