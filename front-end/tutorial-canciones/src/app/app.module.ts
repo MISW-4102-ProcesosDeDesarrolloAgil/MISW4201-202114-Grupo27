@@ -10,7 +10,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ComponentsModule } from '../app/components/components.module';
 import { BannerComponent } from './components/banner/banner.component';
-import { MenuComponent } from "./components/menu/menu.component";
 import { AboutComponent } from './pages/about/about.component';
 import { FooterComponent } from './pages/footer/footer.component';
 import { HeaderComponent } from './pages/header/header.component';
@@ -26,7 +25,6 @@ import { ColDatePipe } from "./pipes/colDate.pipe";
     FooterComponent,
     HeaderComponent,
     MainComponent,
-    MenuComponent,
     ColDatePipe,
     AboutComponent,
     SidebarComponent
@@ -50,7 +48,6 @@ import { ColDatePipe } from "./pipes/colDate.pipe";
     FooterComponent,
     HeaderComponent,
     MainComponent,
-    MenuComponent,
     ColDatePipe,
     AboutComponent
   ],
