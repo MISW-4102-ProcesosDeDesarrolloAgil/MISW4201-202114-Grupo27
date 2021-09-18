@@ -4,12 +4,11 @@ name: Continuous_Integration
 on:
   # Triggers the workflow on push Lonic-xx branch
   push:
-    branches:
-    - 'feature/**'
-    - 'development'
+    branches: development
+
   pull_request:
     branches: development
-  
+    
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
