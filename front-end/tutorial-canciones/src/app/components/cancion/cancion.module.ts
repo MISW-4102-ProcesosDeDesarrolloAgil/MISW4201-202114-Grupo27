@@ -14,7 +14,11 @@ import { CancionCompartirComponent } from './cancion-compartir/cancion-compartir
     CancionDetailComponent,
     CancionCreateComponent,
     CancionEditComponent,
+<<<<<<< HEAD:front-end/tutorial-canciones/src/app/components/cancion/cancion.module.ts
     CancionCompartirComponent,
+=======
+    CancionCompartirComponent
+>>>>>>> origin/development:front-end/tutorial-canciones/src/app/cancion/cancion.module.ts
   ],
   imports: [
     CommonModule,
@@ -25,7 +29,11 @@ import { CancionCompartirComponent } from './cancion-compartir/cancion-compartir
     CancionDetailComponent,
     CancionCreateComponent,
     CancionEditComponent,
+<<<<<<< HEAD:front-end/tutorial-canciones/src/app/components/cancion/cancion.module.ts
     CancionCompartirComponent,
+=======
+    CancionCompartirComponent
+>>>>>>> origin/development:front-end/tutorial-canciones/src/app/cancion/cancion.module.ts
   ]
 })
 export class CancionModule { }
