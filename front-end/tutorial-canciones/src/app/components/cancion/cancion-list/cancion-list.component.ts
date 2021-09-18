@@ -26,6 +26,7 @@ export class CancionListComponent implements OnInit {
   mostrarCanciones: Array<Cancion>
   cancionSeleccionada: Cancion
   indiceSeleccionado: number = 0
+  cancionMarcada: number = 0
 
   ngOnInit() {
     const userInfo = this.userService.getUserInfo();
@@ -96,5 +97,4 @@ export class CancionListComponent implements OnInit {
   irVentanaCompartirCancion(cancionId: number){
     this.routerPath.navigate([`/canciones/compartir/${cancionId}`])
   }
-
 }

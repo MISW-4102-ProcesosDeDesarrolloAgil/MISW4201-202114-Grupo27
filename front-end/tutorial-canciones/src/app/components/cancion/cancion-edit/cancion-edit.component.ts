@@ -42,7 +42,7 @@ export class CancionEditComponent implements OnInit {
         titulo: [cancion.titulo, [Validators.required, Validators.maxLength(128)]],
         minutos: [cancion.minutos, [Validators.required, Validators.pattern("^[0-9]*$"), Validators.maxLength(2)]],
         segundos: [cancion.segundos, [Validators.required, Validators.pattern("^[0-9]*$"), Validators.maxLength(2)]],
-        interprete: [cancion.interprete, [Validators.required, Validators.maxLength(128)]]
+        interprete: [cancion.interprete, [Validators.required, Validators.maxLength(128)]],
       })
     })
   }

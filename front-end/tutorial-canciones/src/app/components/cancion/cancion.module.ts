@@ -14,7 +14,7 @@ import { CancionCompartirComponent } from './cancion-compartir/cancion-compartir
     CancionDetailComponent,
     CancionCreateComponent,
     CancionEditComponent,
-    CancionCompartirComponent
+    CancionCompartirComponent,
   ],
   imports: [
     CommonModule,
@@ -25,7 +25,7 @@ import { CancionCompartirComponent } from './cancion-compartir/cancion-compartir
     CancionDetailComponent,
     CancionCreateComponent,
     CancionEditComponent,
-    CancionCompartirComponent
+    CancionCompartirComponent,
   ]
 })
 export class CancionModule { }
