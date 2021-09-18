@@ -130,4 +130,8 @@ export class AlbumListComponent implements OnInit {
   showSuccess() {
     this.toastr.success(`El album fue eliminado`, "Eliminado exitosamente");
   }
+
+  irVentanaCompartirAlbum(albumId: number){
+    this.routerPath.navigate([`/albumes/compartir/${albumId}`])
+  }
 }

@@ -57,4 +57,8 @@ export class AlbumService {
     return this.http.post<Cancion>(`${this.backUrl}/album/${albumId}/canciones`, {"id_cancion": cancionId})
   }
 
+  compartirAlbum(albumId: number, emails: string): Observable<Album>{
+    return this.http.put<Album>(`${this.backUrl}/album/${albumId}/compartir`, {"emails" : emails})
+  }
+
 }
