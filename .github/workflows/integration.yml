@@ -4,9 +4,8 @@ name: Continuous_Integration
 on:
   # Triggers the workflow on push Lonic-xx branch
   push:
-    branches:
-    - 'feature/**'
-    - 'development'
+    branches: development
+
   pull_request:
     branches: development
   
