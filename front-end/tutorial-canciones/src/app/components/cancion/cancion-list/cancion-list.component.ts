@@ -44,6 +44,7 @@ export class CancionListComponent implements OnInit {
     .subscribe(canciones => {
       this.canciones = canciones
       this.mostrarCanciones = canciones
+      this.validarCompartidaConmigo(this.mostrarCanciones) 
       this.onSelect(this.mostrarCanciones[0], 0)
     })
   }
@@ -70,6 +71,12 @@ export class CancionListComponent implements OnInit {
     })
     this.mostrarCanciones = cancionesBusqueda
   }
+
+  validarCompartidaConmigo(canciones: Array<Cancion>) {
+    for (var i in canciones) {
+        canciones[i].estaCompartidaConmigo = canciones[i].usuarios.includes(this.userId);
+    }
+ }
 
   eliminarCancion(){
     this.cancionService.eliminarCancion(this.cancionSeleccionada.id)
