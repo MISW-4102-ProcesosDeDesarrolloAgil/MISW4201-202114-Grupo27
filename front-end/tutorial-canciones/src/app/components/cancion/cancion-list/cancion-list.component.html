@@ -21,7 +21,7 @@
             <table class="table table-hover mb-0" aria-describedby="colecName">
               <tbody>
                   <tr *ngFor="let cancion of mostrarCanciones; index as i" (click)="onSelect(cancion, i)" [ngClass]="{'selected': i === indiceSeleccionado}">
-                    <td>{{cancion.id}} - {{cancion.titulo}}</td>
+                    <td>{{cancion.titulo}} - {{cancion.interprete}}</td>
                     <td>{{cancion.minutos | number:'2.0-0'}}:{{cancion.segundos | number:'2.0-0'}}</td>
                     <td><button type="button" class="my-1 btn btn-outline-primary btn-circle"><i class="bi bi"></i></button></td>
                     <td><i class="glyphicon glyphicon-bell" [ngClass]="cancion.estaCompartidaConmigo ? 'bi bi-share': ' '" title="Esta cancion esta compartida conmigo" alt="Esta cancion esta compartida conmigo" >  </i></td>
