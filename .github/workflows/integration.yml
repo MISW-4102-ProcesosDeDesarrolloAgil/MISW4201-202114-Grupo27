@@ -88,7 +88,3 @@ jobs:
           heroku_email: "jl.lopez77@uniandes.edu.co"
           usedocker: true
           appdir: front-end/tutorial-canciones
-          docker_build_args: |
-            ENV_TYPE
-        env:
-          ENV_TYPE: Ddevelopment
