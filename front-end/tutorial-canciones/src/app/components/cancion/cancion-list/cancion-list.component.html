@@ -24,9 +24,8 @@
                     <td>{{cancion.id}} - {{cancion.titulo}}</td>
                     <td>{{cancion.minutos | number:'2.0-0'}}:{{cancion.segundos | number:'2.0-0'}}</td>
                     <td><button type="button" class="my-1 btn btn-outline-primary btn-circle"><i class="bi bi"></i></button></td>
-                    <td>
-                      <button type="button" class="my-1 btn btn-outline-primary btn-circle" (click)="irVentanaCompartirCancion(cancion.id)"><i class="bi bi-share"></i></button>
-                    </td>
+                    <td><i class="glyphicon glyphicon-bell" [ngClass]="cancion.estaCompartidaConmigo ? 'bi bi-share': ' '" title="Esta cancion esta compartida conmigo" alt="Esta cancion esta compartida conmigo" >  </i></td>
+                    <td><button type="button" class="my-1 btn btn-outline-primary btn-circle" (click)="irVentanaCompartirCancion(cancion.id)"><i class="bi bi-share"></i></button></td>
                   </tr>
               </tbody>
             </table>
