@@ -31,6 +31,7 @@ class VistaCancion(Resource):
         cancion.minutos = request.json.get("minutos",cancion.minutos)
         cancion.segundos = request.json.get("segundos",cancion.segundos)
         cancion.interprete = request.json.get("interprete",cancion.interprete)
+        cancion.favorita = 0
         db.session.commit()
         return cancion_schema.dump(cancion)
 
@@ -117,7 +118,7 @@ class VistaCancionesAlbum(Resource):
             else:
                 return 'Canción errónea',404
         else: 
-            nueva_cancion = Cancion(titulo=request.json["titulo"], minutos=request.json["minutos"], segundos=request.json["segundos"], interprete=request.json["interprete"])
+            nueva_cancion = Cancion(titulo=request.json["titulo"], minutos=request.json["minutos"], segundos=request.json["segundos"], interprete=request.json["interprete"], favorita=request.json["favorita"])
             album.canciones.append(nueva_cancion)
         db.session.commit()
         return cancion_schema.dump(nueva_cancion)
@@ -168,7 +169,3 @@ class VistaCancionesCompartir(Resource):
 
         return cancion_schema.dump(cancion)
         #return {"mensaje": "Inicio de sesión exitoso", "token": token_de_acceso}
-
-
-
-

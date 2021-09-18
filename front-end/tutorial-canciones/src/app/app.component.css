@@ -1,9 +1,16 @@
-.layout {
-    display: flex;
+.row {
+  margin-top: 5px;
 }
 
-.layout .content {
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
+.footer {
+  position: relative;
+  margin-top: 10px;
+  bottom: 0;
+  width: 97%;
+  margin-left: 1%;
+}
+
+.col-md-3 {
+  margin-top: 1%;
+  margin-left: 1%;
 }

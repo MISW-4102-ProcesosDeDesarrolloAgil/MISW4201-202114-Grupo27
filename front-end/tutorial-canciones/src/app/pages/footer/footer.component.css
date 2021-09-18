@@ -1,0 +1,10 @@
+footer {
+  position: relative;
+  bottom: auto;
+}
+
+.col-12 {
+  background-color: rgba(0, 0, 0, 0.2);
+  text-align: center;
+  height: auto;
+}
