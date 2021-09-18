@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Cancion } from '../cancion';
-import { CancionService } from '../cancion.service';
+import { CancionService } from '../../../services/cancion.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { UserService } from 'src/app/shared/services/user.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-cancion-list',
@@ -42,17 +42,10 @@ export class CancionListComponent implements OnInit {
     this.cancionService.getCanciones()
     .subscribe(canciones => {
       this.canciones = canciones
-      this.mostrarCanciones = canciones      
-      this.validarCompartidaConmigo(this.mostrarCanciones)      
+      this.mostrarCanciones = canciones
       this.onSelect(this.mostrarCanciones[0], 0)
     })
   }
-
- validarCompartidaConmigo(canciones: Array<Cancion>) {
-    for (var i in canciones) {
-        canciones[i].estaCompartidaConmigo = canciones[i].usuarios.includes(this.userId);
-    }
- }
 
   onSelect(cancion: Cancion, indice: number){
     this.indiceSeleccionado = indice
