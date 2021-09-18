@@ -6,7 +6,7 @@ on:
       - dev-front
 
   # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
+  # workflow_dispatch:
   
 jobs:
   back:
@@ -34,4 +34,3 @@ jobs:
           heroku_email: "jl.lopez77@uniandes.edu.co"
           usedocker: true
           appdir: front-end/tutorial-canciones
-  
