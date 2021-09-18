@@ -7,22 +7,12 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-md-3" *ngIf="showSidebar">
+    <div class="col-2" *ngIf="showSidebar">
       <app-sidebar></app-sidebar>
     </div>
-    <div class="col-md-9 main-section">
+    <div class="col-10 main-section">
       <router-outlet></router-outlet>
     </div>
-
-  <!--/div>
-  <div class="layout">
-    <div class="col-md-3 left-aside d-none d-md-block" *ngIf="showSidebar">
-      <app-sidebar></app-sidebar>
-    </div>
-    <div class="content">
-      <router-outlet></router-outlet>
-    </div>
-  </div-->
   <app-footer></app-footer>
 </div>
 </div>

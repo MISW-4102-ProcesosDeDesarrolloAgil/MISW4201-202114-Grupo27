@@ -42,10 +42,17 @@ export class CancionListComponent implements OnInit {
     this.cancionService.getCanciones()
     .subscribe(canciones => {
       this.canciones = canciones
-      this.mostrarCanciones = canciones
+      this.mostrarCanciones = canciones      
+      this.validarCompartidaConmigo(this.mostrarCanciones)      
       this.onSelect(this.mostrarCanciones[0], 0)
     })
   }
+
+ validarCompartidaConmigo(canciones: Array<Cancion>) {
+    for (var i in canciones) {
+        canciones[i].estaCompartidaConmigo = canciones[i].usuarios.includes(this.userId);
+    }
+ }
 
   onSelect(cancion: Cancion, indice: number){
     this.indiceSeleccionado = indice
