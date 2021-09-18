@@ -91,4 +91,4 @@ jobs:
           docker_build_args: |
             ENV_TYPE
         env:
-          ENV_TYPE: Dev
+          ENV_TYPE: Ddevelopment
