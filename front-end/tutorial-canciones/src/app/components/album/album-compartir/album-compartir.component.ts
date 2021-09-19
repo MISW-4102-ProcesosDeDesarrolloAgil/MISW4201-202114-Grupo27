@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
 import {ToastrService} from "ngx-toastr";
-import { AlbumService } from 'src/app/services/album.service';
+import { AlbumService } from '../../../services/album.service';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -24,7 +24,8 @@ export class AlbumCompartirComponent implements OnInit {
     private router: ActivatedRoute,
     private routerPath: Router,
     private toastr: ToastrService,
-    private userService: UserService) { }
+    private userService: UserService
+    ) { }
 
   ngOnInit(): void {
     this.emailList = "";
