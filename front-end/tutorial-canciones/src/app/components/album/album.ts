@@ -52,7 +52,7 @@ export class Cancion{
     minutos: number;
     segundos: number;
     interprete: string;
-    favorita: number;
+    favorita: number
 
     constructor(
         id: number,
@@ -60,7 +60,7 @@ export class Cancion{
         minutos: number,
         segundos: number,
         interprete: string,
-        favorita: number,
+        favorita: number
     ){
         this.id = id,
         this.titulo = titulo,
