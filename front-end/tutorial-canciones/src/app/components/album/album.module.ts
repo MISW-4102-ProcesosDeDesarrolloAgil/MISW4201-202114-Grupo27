@@ -6,6 +6,7 @@ import { AlbumDetailComponent } from './album-detail/album-detail.component';
 import { AlbumCreateComponent } from './album-create/album-create.component';
 import { AlbumEditComponent } from './album-edit/album-edit.component';
 import { AlbumJoinCancionComponent } from './album-join-cancion/album-join-cancion.component';
+import { AlbumCompartirComponent } from './album-compartir/album-compartir.component';
 
 @NgModule({
   declarations: [
@@ -13,7 +14,8 @@ import { AlbumJoinCancionComponent } from './album-join-cancion/album-join-canci
     AlbumDetailComponent,
     AlbumCreateComponent,
     AlbumEditComponent,
-    AlbumJoinCancionComponent
+    AlbumJoinCancionComponent,
+    AlbumCompartirComponent
   ],
   imports: [
     CommonModule,

@@ -12,6 +12,7 @@ import { UsuarioSignupComponent } from './components/usuario/usuario-signup/usua
 import { MainComponent } from "./pages/main/main.component";
 import { CancionCompartirComponent } from "./components/cancion/cancion-compartir/cancion-compartir.component";
 import { AboutComponent } from './pages/about/about.component';
+import { AlbumCompartirComponent } from './components/album/album-compartir/album-compartir.component';
 
 const routes: Routes = [
   {
@@ -44,6 +45,10 @@ const routes: Routes = [
   {
     path: 'albumes/join/:albumId',
     component: AlbumJoinCancionComponent
+  },
+  {
+    path: 'albumes/compartir/:albumId',
+    component: AlbumCompartirComponent
   },
   {
     path: 'canciones',

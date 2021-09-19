@@ -169,3 +169,26 @@ class VistaCancionesCompartir(Resource):
 
         return cancion_schema.dump(cancion)
         #return {"mensaje": "Inicio de sesión exitoso", "token": token_de_acceso}
+
+class VistaAlbumesCompartir(Resource):
+
+    def put(self, albumId):
+        album = Album.query.get_or_404(albumId)
+        if "emails" in request.json.keys():
+            email_list = request.json["emails"]
+            user_list = email_list.split(',')
+            print(user_list)
+            users = Usuario.query.filter(Usuario.nombre.in_(user_list)).all()
+
+            if len(users) <= 0:
+                return "El usuario no existe", 404
+            else:                
+                for user in users:
+                    print(user.nombre)
+                    user.AlbumesCompartidos.append(album)  
+            db.session.commit()                              
+        else:
+            return "Al menos debe existir un email", 404
+
+        return album_schema.dump(album)
+        #return {"mensaje": "Inicio de sesión exitoso", "token": token_de_acceso}
