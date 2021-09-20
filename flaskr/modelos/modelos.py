@@ -24,7 +24,6 @@ class Cancion(db.Model):
     minutos = db.Column(db.Integer)
     segundos = db.Column(db.Integer)
     interprete = db.Column(db.String(128))
-    favorita = db.Column(db.Integer)
     albumes = db.relationship('Album', secondary='album_cancion', back_populates="canciones")
     usuarios = db.relationship('Usuario', secondary='cancion_compartida_usuario', back_populates="CancionesCompartidas")
 

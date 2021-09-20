@@ -4,10 +4,9 @@ export class Cancion {
     minutos: number;
     segundos: number;
     interprete: string;
-    favorita: number;
     albumes: Array<any>
     usuarios: Array<any>;
-    estaCompartidaConmigo: boolean;
+    estaCompartidaConmigo: boolean
 
     constructor(
         id: number,
@@ -15,7 +14,6 @@ export class Cancion {
         minutos: number,
         segundos: number,
         interprete: string,
-        favorita: number,
         albumes: Array<any>,
         usuarios: Array<any>,
         estaCompartidaConmigo: boolean
@@ -25,9 +23,8 @@ export class Cancion {
         this.minutos = minutos,
         this.segundos = segundos,
         this.interprete = interprete,
-        this.favorita = favorita,
-        this.albumes = albumes
+        this.albumes = albumes;
         this.usuarios = usuarios;
-        this.estaCompartidaConmigo = estaCompartidaConmigo;
+        this.estaCompartidaConmigo = estaCompartidaConmigo
     }
 }

@@ -49,7 +49,4 @@ export class CancionService {
     return this.http.put<Cancion>(`${this.backUrl}/cancion/${cancionId}/compartir`, {"emails" : emails})
   }
 
-  cancionFavorita(cancion: Cancion, cancionId: number):Observable<Cancion>{
-    return this.http.put<Cancion>(`${this.backUrl}/cancion/${cancionId}`, cancion)
-  }
 }
