@@ -1,3 +1,5 @@
+import { BlockLike } from "typescript";
+
 export class Cancion {
     id: number;
     titulo: string;
@@ -6,7 +8,8 @@ export class Cancion {
     interprete: string;
     albumes: Array<any>
     usuarios: Array<any>;
-    estaCompartidaConmigo: boolean
+    estaCompartidaConmigo: boolean;
+    esFavorita: boolean
 
     constructor(
         id: number,
@@ -16,7 +19,8 @@ export class Cancion {
         interprete: string,
         albumes: Array<any>,
         usuarios: Array<any>,
-        estaCompartidaConmigo: boolean
+        estaCompartidaConmigo: boolean,
+        esFavorita:boolean
     ){
         this.id = id,
         this.titulo = titulo,
@@ -25,6 +29,7 @@ export class Cancion {
         this.interprete = interprete,
         this.albumes = albumes;
         this.usuarios = usuarios;
-        this.estaCompartidaConmigo = estaCompartidaConmigo
+        this.estaCompartidaConmigo = estaCompartidaConmigo;
+        this.esFavorita = esFavorita
     }
 }

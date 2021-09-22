@@ -26,7 +26,7 @@ export class CancionListComponent implements OnInit {
   mostrarCanciones: Array<Cancion>
   cancionSeleccionada: Cancion
   indiceSeleccionado: number = 0
-  cancionMarcada: number = 0
+  miCancionFavorita: boolean = true
 
   ngOnInit() {
     const userInfo = this.userService.getUserInfo();
@@ -44,7 +44,7 @@ export class CancionListComponent implements OnInit {
     .subscribe(canciones => {
       this.canciones = canciones
       this.mostrarCanciones = canciones
-      this.validarCompartidaConmigo(this.mostrarCanciones) 
+      this.validarCompartidaConmigo(this.mostrarCanciones)
       this.onSelect(this.mostrarCanciones[0], 0)
     })
   }
@@ -76,7 +76,7 @@ export class CancionListComponent implements OnInit {
     for (var i in canciones) {
         canciones[i].estaCompartidaConmigo = canciones[i].usuarios.includes(this.userId);
     }
- }
+  }
 
   eliminarCancion(){
     this.cancionService.eliminarCancion(this.cancionSeleccionada.id)
