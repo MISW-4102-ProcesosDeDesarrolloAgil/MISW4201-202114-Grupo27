@@ -1,3 +1,6 @@
+import { map } from 'rxjs/operators';
+import { Usuario } from './../../usuario/usuario';
+import { MainComponent } from './../../../pages/main/main.component';
 import { Component, OnInit } from '@angular/core';
 import { Cancion } from '../cancion';
 import { CancionService } from '../../../services/cancion.service';
@@ -26,7 +29,7 @@ export class CancionListComponent implements OnInit {
   mostrarCanciones: Array<Cancion>
   cancionSeleccionada: Cancion
   indiceSeleccionado: number = 0
-  miCancionFavorita: boolean = true
+  verificado: boolean = true
 
   ngOnInit() {
     const userInfo = this.userService.getUserInfo();
@@ -103,5 +106,23 @@ export class CancionListComponent implements OnInit {
 
   irVentanaCompartirCancion(cancionId: number){
     this.routerPath.navigate([`/canciones/compartir/${cancionId}`])
+  }
+
+  selecionarCancion(indice: number){
+
+  }
+
+  deselecionarCancion(indice: number){
+
+  }
+
+  esFavorita(i: number) {
+    this.cancionService.cancionFavorita(i+1)
+    .subscribe(usuario => {
+      usuario
+    },
+    error => {
+      this.showError(`Ha ocurrido un error: ${error.message}`)
+    })
   }
 }

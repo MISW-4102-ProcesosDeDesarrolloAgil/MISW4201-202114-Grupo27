@@ -192,6 +192,9 @@ class VistaAlbumesCompartir(Resource):
         return album_schema.dump(album)
         #return {"mensaje": "Inicio de sesión exitoso", "token": token_de_acceso}
 class VistaCancionFavorita(Resource):
+    
+    @jwt_required()
     def get(self, id_cancion):
         cancion = Cancion.query.get_or_404(id_cancion)
         return [usuario_schema.dump(nv) for nv in cancion.favorita]
+
