@@ -117,12 +117,7 @@ export class CancionListComponent implements OnInit {
   }
 
   esFavorita(i: number) {
-    this.cancionService.cancionFavorita(i+1)
-    .subscribe(usuario => {
-      usuario
-    },
-    error => {
-      this.showError(`Ha ocurrido un error: ${error.message}`)
-    })
+      let buscando = this.cancionService.cancionFavorita(i).forEach.length
+      console.log(buscando)
   }
 }
