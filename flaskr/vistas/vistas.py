@@ -1,6 +1,6 @@
 from re import U
 from flask import request
-from ..modelos import db, Cancion, CancionSchema, Usuario, UsuarioSchema, Album, AlbumSchema
+from ..modelos import db, Cancion, CancionSchema, Usuario, UsuarioSchema, Album, AlbumSchema,comentarioSchema, Comentario
 from flask_restful import Resource
 from sqlalchemy.exc import IntegrityError
 from flask_jwt_extended import jwt_required, create_access_token, get_jwt_identity
@@ -8,6 +8,7 @@ from flask_jwt_extended import jwt_required, create_access_token, get_jwt_identi
 cancion_schema = CancionSchema()
 usuario_schema = UsuarioSchema()
 album_schema = AlbumSchema()
+comentario_schema = comentarioSchema()
 
 
 class VistaCanciones(Resource):
@@ -193,7 +194,7 @@ class VistaAlbumesCompartir(Resource):
         return album_schema.dump(album)
         #return {"mensaje": "Inicio de sesión exitoso", "token": token_de_acceso}
 class VistaCancionFavorita(Resource):
-    
+
     @jwt_required()
     def get(self, id_cancion):
         cancion = Cancion.query.get_or_404(id_cancion)
@@ -212,10 +213,16 @@ class VistaCancionFavorita(Resource):
         return usuario_schema.dump(usuario)
 
 class VistaEliminarFavorita(Resource):
-    
+
     def delete(self, id_usuario, id_cancion):
         cancion = Cancion.query.get_or_404(id_cancion)
         usuario = Usuario.query.get_or_404(id_usuario)
         usuario.cancionFavorita.delete(cancion)
         db.session.commit()
         return usuario_schema.dump(usuario)
+class VistaComentario(Resource):
+    def post(self):
+        nuevo_comentario = Comentario(comentario=request.json["comentario"], estado = request.json["estado"])
+        db.session.add(nuevo_comentario)
+        db.session.commit()
+        return cancion_schema.dump(nuevo_comentario)
