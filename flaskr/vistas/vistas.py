@@ -1,5 +1,5 @@
 from flask import request
-from ..modelos import db, Cancion, CancionSchema, Usuario, UsuarioSchema, Album, AlbumSchema,comentarioSchema, Comentario
+from ..modelos import db, Cancion, CancionSchema, Usuario, UsuarioSchema, Album, AlbumSchema,ComentarioSchema, Comentario
 from flask_restful import Resource
 from sqlalchemy.exc import IntegrityError
 from flask_jwt_extended import jwt_required, create_access_token, get_jwt_identity
@@ -7,7 +7,7 @@ from flask_jwt_extended import jwt_required, create_access_token, get_jwt_identi
 cancion_schema = CancionSchema()
 usuario_schema = UsuarioSchema()
 album_schema = AlbumSchema()
-comentario_schema = comentarioSchema()
+comentario_schema = ComentarioSchema()
 
 
 class VistaCanciones(Resource):
@@ -47,7 +47,7 @@ class VistaAlbumesCanciones(Resource):
         return [album_schema.dump(al) for al in cancion.albumes]
 
 class VistaSignIn(Resource):
-    
+
     def post(self):
         nuevo_usuario = Usuario(nombre=request.json["nombre"], contrasena=request.json["contrasena"])
         db.session.add(nuevo_usuario)
@@ -108,21 +108,21 @@ class VistaCancionesAlbum(Resource):
 
     def post(self, id_album):
         album = Album.query.get_or_404(id_album)
-        
+
         if "id_cancion" in request.json.keys():
-            
+
             nueva_cancion = Cancion.query.get(request.json["id_cancion"])
             if nueva_cancion is not None:
                 album.canciones.append(nueva_cancion)
                 db.session.commit()
             else:
                 return 'Canción errónea',404
-        else: 
+        else:
             nueva_cancion = Cancion(titulo=request.json["titulo"], minutos=request.json["minutos"], segundos=request.json["segundos"], interprete=request.json["interprete"])
             album.canciones.append(nueva_cancion)
         db.session.commit()
         return cancion_schema.dump(nueva_cancion)
-       
+
     def get(self, id_album):
         album = Album.query.get_or_404(id_album)
         return [cancion_schema.dump(ca) for ca in album.canciones]
@@ -182,20 +182,28 @@ class VistaAlbumesCompartir(Resource):
 
             if len(users) <= 0:
                 return "El usuario no existe", 404
-            else:                
+            else:
                 for user in users:
                     print(user.nombre)
-                    user.AlbumesCompartidos.append(album)  
-            db.session.commit()                              
+                    user.AlbumesCompartidos.append(album)
+            db.session.commit()
         else:
             return "Al menos debe existir un email", 404
 
         return album_schema.dump(album)
         #return {"mensaje": "Inicio de sesión exitoso", "token": token_de_acceso}
 
-class VistaComentario(Resource):
-    def post(self):
+
+class VistaComentarioAlbum(Resource):
+    def post(self, id_album):
+        album = Album.query.get_or_404(id_album)
         nuevo_comentario = Comentario(comentario=request.json["comentario"], estado = request.json["estado"])
+        nuevo_comentario.albumes.append(album)
         db.session.add(nuevo_comentario)
         db.session.commit()
         return cancion_schema.dump(nuevo_comentario)
+
+
+class VistaComentario(Resource):
+    def get(self, id_comentario):
+        return comentario_schema.dump(Comentario.query.get_or_404(id_comentario))
