@@ -98,7 +98,7 @@ class UsuarioSchema(SQLAlchemyAutoSchema):
          include_relationships = True
          load_instance = True
 
-class comentarioSchema(SQLAlchemyAutoSchema):
+class ComentarioSchema(SQLAlchemyAutoSchema):
     class Meta:
         model = Comentario
         include_relationships = True

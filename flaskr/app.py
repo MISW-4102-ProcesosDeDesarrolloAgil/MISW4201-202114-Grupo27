@@ -13,6 +13,8 @@ from .vistas import \
     VistaCancionesCompartir, \
     VistaAlbumesCompartir, \
     VistaUsuario\
+    ,VistaComentario, \
+    VistaComentarioAlbum
     ,VistaComentario
     VistaEliminarFavorita, \
     VistaCancionFavorita, \
@@ -40,6 +42,8 @@ api.add_resource(VistaCancionesAlbum, '/album/<int:id_album>/canciones')
 api.add_resource(VistaUsuario, '/usuario/<int:id_usuario>')
 api.add_resource(VistaCancionesCompartir, '/cancion/<int:cancionId>/compartir')
 api.add_resource(VistaAlbumesCompartir, '/album/<int:albumId>/compartir')
+api.add_resource(VistaComentarioAlbum,'/album/<int:id_album>/comentario')
+api.add_resource(VistaComentario,'/comentario/<int:id_comentario>')
 api.add_resource(VistaComentario,'/comentario')
 api.add_resource(VistaCancionFavorita, '/cancion/<int:id_cancion>/favorita/')
 api.add_resource(VistaEliminarFavorita, '/<int:id_usuario>/<int:id_cancion>/favorita/')
