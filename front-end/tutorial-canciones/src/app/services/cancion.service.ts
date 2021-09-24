@@ -51,6 +51,6 @@ export class CancionService {
   }
 
   cancionFavorita(cancionId: number): Observable<Usuario>{
-    return this.http.get<Usuario>(`${this.backUrl}/cancion/${cancionId}/favorita`)
+    return this.http.get<Usuario>(`${this.backUrl}/usuario/${cancionId}/favorita`)
   }
 }

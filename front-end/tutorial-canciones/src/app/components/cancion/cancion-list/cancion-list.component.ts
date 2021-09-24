@@ -1,4 +1,4 @@
-import { map } from 'rxjs/operators';
+import { map, retry } from 'rxjs/operators';
 import { Usuario } from './../../usuario/usuario';
 import { MainComponent } from './../../../pages/main/main.component';
 import { Component, OnInit } from '@angular/core';
@@ -29,7 +29,6 @@ export class CancionListComponent implements OnInit {
   mostrarCanciones: Array<Cancion>
   cancionSeleccionada: Cancion
   indiceSeleccionado: number = 0
-  verificado: boolean = true
 
   ngOnInit() {
     const userInfo = this.userService.getUserInfo();
@@ -48,6 +47,7 @@ export class CancionListComponent implements OnInit {
       this.canciones = canciones
       this.mostrarCanciones = canciones
       this.validarCompartidaConmigo(this.mostrarCanciones)
+      this.esFavorita(this.mostrarCanciones)
       this.onSelect(this.mostrarCanciones[0], 0)
     })
   }
@@ -62,7 +62,16 @@ export class CancionListComponent implements OnInit {
     error => {
       this.showError(`Ha ocurrido un error: ${error.message}`)
     })
+  }
 
+  esFavorita(canciones: Array<Cancion>) {
+    this.cancionService.getCanciones()
+    .subscribe(canciones => {
+      this.canciones = canciones})
+      console.log(this.canciones)
+    for (var i in canciones) {
+      canciones[i].esCancionFavorita = canciones[i].usuarios.includes(this.userId);
+    }
   }
 
   buscarCancion(busqueda: string){
@@ -110,14 +119,5 @@ export class CancionListComponent implements OnInit {
 
   selecionarCancion(indice: number){
 
-  }
-
-  deselecionarCancion(indice: number){
-
-  }
-
-  esFavorita(i: number) {
-      let buscando = this.cancionService.cancionFavorita(i).forEach.length
-      console.log(buscando)
   }
 }

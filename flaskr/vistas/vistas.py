@@ -198,3 +198,14 @@ class VistaCancionFavorita(Resource):
         cancion = Cancion.query.get_or_404(id_cancion)
         return [usuario_schema.dump(nv) for nv in cancion.favorita]
 
+    def put(self, id_cancion):
+        usuario = Usuario.query.get_or_404(id_cancion)
+        usuario.CancionFavorita.append(id_cancion)
+        db.session.commit() 
+
+    def delete(self, id_cancion):
+        cancion = Cancion.query.get_or_404(id_cancion)
+        db.session.delete(cancion)
+        db.session.commit()
+
+# user.CancionesCompartidas.append(cancion)
