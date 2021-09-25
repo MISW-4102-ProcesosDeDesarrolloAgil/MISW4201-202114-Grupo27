@@ -15,13 +15,8 @@ from .vistas import \
     VistaUsuario\
     ,VistaComentario, \
     VistaComentarioAlbum
-    ,VistaComentario
     VistaEliminarFavorita, \
     VistaCancionFavorita, \
-    VistaUsuario
-    VistaUsuario\
-    ,VistaComentario, \
-    VistaComentarioAlbum
 from flask_jwt_extended import JWTManager
 from flask_cors import CORS, cross_origin
 
