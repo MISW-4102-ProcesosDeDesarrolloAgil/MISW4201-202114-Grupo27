@@ -50,7 +50,15 @@ export class CancionService {
     return this.http.put<Cancion>(`${this.backUrl}/cancion/${cancionId}/compartir`, {"emails" : emails})
   }
 
-  cancionFavorita(cancionId: number): Observable<Usuario>{
-    return this.http.get<Usuario>(`${this.backUrl}/usuario/${cancionId}/favorita`)
+  cancionFavorita(cancionId: number): Observable<Cancion>{
+    return this.http.get<Cancion>(`${this.backUrl}/cancion/${cancionId}/favorita`)
+  }
+
+  asociarCancionFavorita(userId: number, cancionId: number): Observable<Cancion>{
+    return this.http.put<Cancion>(`${this.backUrl}/cancion/${cancionId}/favorita`, {"id_usuario": userId})
+  }
+
+  eliminarCancionFavorita(cancionId: number): Observable<Cancion>{
+    return this.http.delete<Cancion>(`${this.backUrl}/cancion/${cancionId}/favorita`)
   }
 }

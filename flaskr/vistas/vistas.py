@@ -1,3 +1,4 @@
+from re import U
 from flask import request
 from ..modelos import db, Cancion, CancionSchema, Usuario, UsuarioSchema, Album, AlbumSchema
 from flask_restful import Resource
@@ -199,13 +200,19 @@ class VistaCancionFavorita(Resource):
         return [usuario_schema.dump(nv) for nv in cancion.favorita]
 
     def put(self, id_cancion):
-        usuario = Usuario.query.get_or_404(id_cancion)
-        usuario.CancionFavorita.append(id_cancion)
-        db.session.commit() 
-
-    def delete(self, id_cancion):
         cancion = Cancion.query.get_or_404(id_cancion)
-        db.session.delete(cancion)
+        if "id_usuario" in request.json.keys():
+            usuario = Usuario.query.get(request.json["id_usuario"])
+            print(usuario)
+            if usuario is not None:
+                usuario.cancionFavorita.append(cancion)
+                db.session.commit()
+            else:
+                return 'Usuario erróneo',404
+        return usuario_schema.dump(usuario)
+       
+    def delete(self, id_cancion):
+        usuario = Usuario.cancionFavorita.filter(id_cancion).firts()
+        db.session.delete(usuario)
         db.session.commit()
-
-# user.CancionesCompartidas.append(cancion)
+        return usuario_schema.dump(usuario)

@@ -8,6 +8,7 @@ export class Cancion {
     interprete: string;
     albumes: Array<any>;
     usuarios: Array<any>;
+    favorita: Array<any>;
     estaCompartidaConmigo: boolean;
     esCancionFavorita: boolean;
 
@@ -19,6 +20,7 @@ export class Cancion {
         interprete: string,
         albumes: Array<any>,
         usuarios: Array<any>,
+        favorita: Array<any>,
         estaCompartidaConmigo: boolean,
         esCancionFavorita:boolean,
     ){
@@ -29,6 +31,7 @@ export class Cancion {
         this.interprete = interprete;
         this.albumes = albumes;
         this.usuarios = usuarios;
+        this.favorita = favorita;
         this.estaCompartidaConmigo = estaCompartidaConmigo;
         this.esCancionFavorita = esCancionFavorita;
     }

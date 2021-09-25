@@ -25,8 +25,10 @@ export class CancionListComponent implements OnInit {
 
   userId: number
   token: string
+  canId: number
   canciones: Array<Cancion>
   mostrarCanciones: Array<Cancion>
+  cancionesFavoritas: Array<Cancion>
   cancionSeleccionada: Cancion
   indiceSeleccionado: number = 0
 
@@ -46,8 +48,9 @@ export class CancionListComponent implements OnInit {
     .subscribe(canciones => {
       this.canciones = canciones
       this.mostrarCanciones = canciones
+      this.cancionesFavoritas = canciones
       this.validarCompartidaConmigo(this.mostrarCanciones)
-      this.esFavorita(this.mostrarCanciones)
+      this.esFavorita(this.cancionesFavoritas)
       this.onSelect(this.mostrarCanciones[0], 0)
     })
   }
@@ -65,12 +68,8 @@ export class CancionListComponent implements OnInit {
   }
 
   esFavorita(canciones: Array<Cancion>) {
-    this.cancionService.getCanciones()
-    .subscribe(canciones => {
-      this.canciones = canciones})
-      console.log(this.canciones)
     for (var i in canciones) {
-      canciones[i].esCancionFavorita = canciones[i].usuarios.includes(this.userId);
+      canciones[i].esCancionFavorita = canciones[i].favorita.includes(this.userId);
     }
   }
 
@@ -118,6 +117,25 @@ export class CancionListComponent implements OnInit {
   }
 
   selecionarCancion(indice: number){
+    console.log("Hice clic")
+    if (this.canciones[indice].favorita){
+      this.canId = indice + 1
+      console.log("Canción es favorita:", "Id usuario ", this.userId, "Id cancion ", this.canId)
+      this.cancionService.eliminarCancionFavorita(this.canId)
+      // this.canciones[indice].estaCompartidaConmigo = false
+      this.getCanciones()
+    }
+  }
 
+  deselecionarCancion(indice: number){
+    console.log("Hice clic")
+    if (this.canciones[indice].favorita){
+      this.canId = indice + 1
+      console.log("Cancion no es favorita ", "Id usuario ", this.userId, "Id cancion ", this.canId)
+      this.cancionService.asociarCancionFavorita(this.userId, this.canId).subscribe
+      (cancion => {
+        this.getCanciones()
+      })
+    }
   }
 }
