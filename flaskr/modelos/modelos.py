@@ -34,17 +34,6 @@ canciones_favoritas_usuario = db.Table('cancion_favorita_usuario',
     db.Column('cancion_id', db.Integer, db.ForeignKey('cancion.id'), primary_key = True))
 
 
-album_comentarios = db.Table('album_comentario',
-    db.Column('comentario_id', db.Integer, db.ForeignKey('comentario.id'), primary_key = True),
-    db.Column('album_id', db.Integer, db.ForeignKey('album.id'), primary_key = True))
-
-class Comentario(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    comentario = db.Column(db.String(512))
-    estado = db.Column(db.Integer)
-    albumes = db.relationship('Album', secondary='album_comentario', back_populates="comentarios")
-
-
 class Cancion(db.Model):
     id = db.Column(db.Integer, primary_key = True)
     titulo = db.Column(db.String(128))
