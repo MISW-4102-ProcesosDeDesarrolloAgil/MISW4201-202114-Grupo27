@@ -12,8 +12,8 @@ from .vistas import \
     VistaAlbumesCanciones, \
     VistaCancionesCompartir, \
     VistaAlbumesCompartir, \
-    VistaUsuario\
-    ,VistaComentarioByIdComentario, \
+    VistaUsuario,\
+    VistaComentarioByIdComentario, \
     VistaComentarioAlbumByIdAlbum,\
     VistaEliminarFavorita, \
     VistaCancionFavorita
@@ -42,6 +42,6 @@ api.add_resource(VistaCancionesCompartir, '/cancion/<int:cancionId>/compartir')
 api.add_resource(VistaAlbumesCompartir, '/album/<int:albumId>/compartir')
 api.add_resource(VistaComentarioAlbumByIdAlbum, '/album/<int:id_album>/comentario')
 api.add_resource(VistaComentarioByIdComentario, '/comentario/<int:id_comentario>')
-api.add_resource(VistaCancionFavorita, '/cancion/<int:id_cancion>/favorita/')
-api.add_resource(VistaEliminarFavorita, '/<int:id_usuario>/<int:id_cancion>/favorita/')
+api.add_resource(VistaCancionFavorita, '/usuario/<int:id_usuario>/cancion/<int:id_cancion>/favorita')
+api.add_resource(VistaEliminarFavorita, '/usuario/<int:id_usuario>/cancion/<int:id_cancion>/favorita')
 jwt = JWTManager(app)

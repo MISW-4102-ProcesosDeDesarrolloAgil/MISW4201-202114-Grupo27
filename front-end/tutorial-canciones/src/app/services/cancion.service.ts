@@ -55,10 +55,10 @@ export class CancionService {
   }
 
   asociarCancionFavorita(userId: number, cancionId: number): Observable<Cancion>{
-    return this.http.put<Cancion>(`${this.backUrl}/cancion/${cancionId}/favorita`, {"id_usuario": userId})
+    return this.http.put<Cancion>(`${this.backUrl}/usuario/${userId}/cancion/${cancionId}/favorita`,{})
   }
 
   eliminarCancionFavorita(userId: number, cancionId: number): Observable<Cancion>{
-    return this.http.delete<Cancion>(`${this.backUrl}/${userId}/${cancionId}/favorita/`)
+    return this.http.delete<Cancion>(`${this.backUrl}/usuario/${userId}/cancion/${cancionId}/favorita`)
   }
 }

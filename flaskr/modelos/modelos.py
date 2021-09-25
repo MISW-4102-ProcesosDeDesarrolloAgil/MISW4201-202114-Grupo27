@@ -68,9 +68,9 @@ class Usuario(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     nombre = db.Column(db.String(50))
     contrasena = db.Column(db.String(50))
-    albumes = db.relationship('Album', cascade='all, delete, delete-orphan')
-    CancionesCompartidas = db.relationship('Cancion', secondary='cancion_compartida_usuario', back_populates="usuarios")
+    albumes = db.relationship('Album', cascade='all, delete, delete-orphan')    
     AlbumesCompartidos = db.relationship('Album', secondary='album_compartido_usuario', back_populates="usuariosCompartido")
+    CancionesCompartidas = db.relationship('Cancion', secondary='cancion_compartida_usuario', back_populates="usuarios")
     cancionFavorita = db.relationship('Cancion', secondary='cancion_favorita_usuario', back_populates="favorita")
 
 class EnumADiccionario(fields.Field):
