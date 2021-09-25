@@ -4,6 +4,7 @@ import { AlbumModule } from './album/album.module';
 import { CancionModule } from './cancion/cancion.module';
 import { UsuarioModule } from './usuario/usuario.module';
 import { SidebarComponent } from '../pages/sidebar/sidebar.component';
+import {ComentarioModule} from "./comentario/comentario.module";
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { SidebarComponent } from '../pages/sidebar/sidebar.component';
     AlbumModule,
     CancionModule,
     UsuarioModule,
+    ComentarioModule
   ]
 })
 export class ComponentsModule { }

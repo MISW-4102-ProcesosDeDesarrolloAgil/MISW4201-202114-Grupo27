@@ -18,6 +18,22 @@ album_compartido_usuarios = db.Table('album_compartido_usuario',
     db.Column('usuario_id', db.Integer, db.ForeignKey('usuario.id'), primary_key = True),
     db.Column('album_id', db.Integer, db.ForeignKey('album.id'), primary_key = True))
 
+album_comentarios = db.Table('album_comentario',
+    db.Column('comentario_id', db.Integer, db.ForeignKey('comentario.id'), primary_key = True),
+    db.Column('album_id', db.Integer, db.ForeignKey('album.id'), primary_key = True))
+
+class Comentario(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    comentario = db.Column(db.String(512))
+    estado = db.Column(db.Integer)
+    albumes = db.relationship('Album', secondary='album_comentario', back_populates="comentarios")
+
+
+canciones_favoritas_usuario = db.Table('cancion_favorita_usuario',
+    db.Column('usuario_id', db.Integer, db.ForeignKey('usuario.id'), primary_key = True),
+    db.Column('cancion_id', db.Integer, db.ForeignKey('cancion.id'), primary_key = True))
+
+
 class Cancion(db.Model):
     id = db.Column(db.Integer, primary_key = True)
     titulo = db.Column(db.String(128))
@@ -26,6 +42,8 @@ class Cancion(db.Model):
     interprete = db.Column(db.String(128))
     albumes = db.relationship('Album', secondary='album_cancion', back_populates="canciones")
     usuarios = db.relationship('Usuario', secondary='cancion_compartida_usuario', back_populates="CancionesCompartidas")
+    favorita = db.relationship('Usuario', secondary='cancion_favorita_usuario', back_populates="cancionFavorita")
+
 
 class Medio(enum.Enum):
    DISCO = 1
@@ -40,6 +58,7 @@ class Album(db.Model):
     medio = db.Column(db.Enum(Medio))
     usuario = db.Column(db.Integer, db.ForeignKey("usuario.id"))
     canciones = db.relationship('Cancion', secondary = 'album_cancion', back_populates="albumes")
+    comentarios = db.relationship('Comentario', secondary='album_comentario')
     usuariosCompartido = db.relationship('Usuario', secondary='album_compartido_usuario', back_populates="AlbumesCompartidos")
     __mapper_args__ = {
         'confirm_deleted_rows': False
@@ -49,9 +68,11 @@ class Usuario(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     nombre = db.Column(db.String(50))
     contrasena = db.Column(db.String(50))
-    albumes = db.relationship('Album', cascade='all, delete, delete-orphan')
-    CancionesCompartidas = db.relationship('Cancion', secondary='cancion_compartida_usuario', back_populates="usuarios")
+    albumes = db.relationship('Album', cascade='all, delete, delete-orphan')    
     AlbumesCompartidos = db.relationship('Album', secondary='album_compartido_usuario', back_populates="usuariosCompartido")
+    CancionesCompartidas = db.relationship('Cancion', secondary='cancion_compartida_usuario', back_populates="usuarios")
+    cancionFavorita = db.relationship('Cancion', secondary='cancion_favorita_usuario', back_populates="favorita")
+
 class EnumADiccionario(fields.Field):
     def _serialize(self, value, attr, obj, **kwargs):
         if value is None:
@@ -76,3 +97,9 @@ class UsuarioSchema(SQLAlchemyAutoSchema):
          model = Usuario
          include_relationships = True
          load_instance = True
+
+class ComentarioSchema(SQLAlchemyAutoSchema):
+    class Meta:
+        model = Comentario
+        include_relationships = True
+        load_instance = True

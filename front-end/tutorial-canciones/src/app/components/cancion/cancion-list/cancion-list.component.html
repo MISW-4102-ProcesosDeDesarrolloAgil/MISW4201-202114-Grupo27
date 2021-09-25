@@ -1,6 +1,6 @@
 <div class="container my-4">
     <div class="row">
-      <div class="col-5">
+      <div class="col-md-4 col-lg-4 col-sm-12 col-xs-12">
         <div class="card">
           <div class="card-header">
             <div class="row">
@@ -23,7 +23,13 @@
                   <tr *ngFor="let cancion of mostrarCanciones; index as i" (click)="onSelect(cancion, i)" [ngClass]="{'selected': i === indiceSeleccionado}">
                     <td>{{cancion.titulo}} - {{cancion.interprete}}</td>
                     <td>{{cancion.minutos | number:'2.0-0'}}:{{cancion.segundos | number:'2.0-0'}}</td>
-                    <td><button type="button" class="my-1 btn btn-outline-primary btn-circle"><i class="bi bi"></i></button></td>
+                    <td><button *ngIf="cancion.esCancionFavorita then bueno else otro"></button></td>
+                    <ng-template #bueno>
+                      <button type="button" class="my-1 btn btn-outline-primary btn-circle" (click)="deselecionarCancion(i)"><i class="heart fa fa-heart fa-beat"></i></button>
+                    </ng-template>
+                    <ng-template #otro>
+                      <button type="button" class="my-1 btn btn-outline-primary btn-circle" (click)="selecionarCancion(i)"><i class="heart fa fa-heart-o fa-beat"></i></button>
+                    </ng-template>
                     <td><i class="glyphicon glyphicon-bell" [ngClass]="cancion.estaCompartidaConmigo ? 'bi bi-share': ' '" title="Esta cancion esta compartida conmigo" alt="Esta cancion esta compartida conmigo" >  </i></td>
                     <td><button type="button" class="my-1 btn btn-outline-primary btn-circle" (click)="irVentanaCompartirCancion(cancion.id)"><i class="bi bi-share"></i></button></td>
                   </tr>
@@ -37,3 +43,4 @@
       </div>
     </div>
   </div>
+
