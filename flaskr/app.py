@@ -12,6 +12,7 @@ from .vistas import \
     VistaAlbumesCanciones, \
     VistaCancionesCompartir, \
     VistaAlbumesCompartir, \
+    VistaEliminarFavorita, \
     VistaCancionFavorita, \
     VistaUsuario
 from flask_jwt_extended import JWTManager
@@ -37,5 +38,6 @@ api.add_resource(VistaCancionesAlbum, '/album/<int:id_album>/canciones')
 api.add_resource(VistaUsuario, '/usuario/<int:id_usuario>')
 api.add_resource(VistaCancionesCompartir, '/cancion/<int:cancionId>/compartir')
 api.add_resource(VistaAlbumesCompartir, '/album/<int:albumId>/compartir')
-api.add_resource(VistaCancionFavorita, '/cancion/<int:id_cancion>/favorita')
+api.add_resource(VistaCancionFavorita, '/cancion/<int:id_cancion>/favorita/')
+api.add_resource(VistaEliminarFavorita, '/<int:id_usuario>/<int:id_cancion>/favorita/')
 jwt = JWTManager(app)

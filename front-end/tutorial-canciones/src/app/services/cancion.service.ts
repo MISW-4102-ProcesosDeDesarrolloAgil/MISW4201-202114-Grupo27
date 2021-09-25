@@ -58,7 +58,7 @@ export class CancionService {
     return this.http.put<Cancion>(`${this.backUrl}/cancion/${cancionId}/favorita`, {"id_usuario": userId})
   }
 
-  eliminarCancionFavorita(cancionId: number): Observable<Cancion>{
-    return this.http.delete<Cancion>(`${this.backUrl}/cancion/${cancionId}/favorita`)
+  eliminarCancionFavorita(userId: number, cancionId: number): Observable<Cancion>{
+    return this.http.delete<Cancion>(`${this.backUrl}/${userId}/${cancionId}/favorita/`)
   }
 }

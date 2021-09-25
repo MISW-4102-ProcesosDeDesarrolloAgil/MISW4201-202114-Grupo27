@@ -117,21 +117,18 @@ export class CancionListComponent implements OnInit {
   }
 
   selecionarCancion(indice: number){
-    console.log("Hice clic")
     if (this.canciones[indice].favorita){
       this.canId = indice + 1
-      console.log("Canción es favorita:", "Id usuario ", this.userId, "Id cancion ", this.canId)
-      this.cancionService.eliminarCancionFavorita(this.canId)
-      // this.canciones[indice].estaCompartidaConmigo = false
-      this.getCanciones()
+      this.cancionService.eliminarCancionFavorita(this.userId, this.canId).subscribe
+      (cancion => {
+        this.getCanciones()
+      })
     }
   }
 
   deselecionarCancion(indice: number){
-    console.log("Hice clic")
     if (this.canciones[indice].favorita){
       this.canId = indice + 1
-      console.log("Cancion no es favorita ", "Id usuario ", this.userId, "Id cancion ", this.canId)
       this.cancionService.asociarCancionFavorita(this.userId, this.canId).subscribe
       (cancion => {
         this.getCanciones()

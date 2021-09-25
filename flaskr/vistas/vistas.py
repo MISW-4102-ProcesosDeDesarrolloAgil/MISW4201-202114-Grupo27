@@ -203,16 +203,19 @@ class VistaCancionFavorita(Resource):
         cancion = Cancion.query.get_or_404(id_cancion)
         if "id_usuario" in request.json.keys():
             usuario = Usuario.query.get(request.json["id_usuario"])
-            print(usuario)
+            # print(usuario)
             if usuario is not None:
                 usuario.cancionFavorita.append(cancion)
                 db.session.commit()
             else:
                 return 'Usuario erróneo',404
         return usuario_schema.dump(usuario)
-       
-    def delete(self, id_cancion):
-        usuario = Usuario.cancionFavorita.filter(id_cancion).firts()
-        db.session.delete(usuario)
+
+class VistaEliminarFavorita(Resource):
+    
+    def delete(self, id_usuario, id_cancion):
+        cancion = Cancion.query.get_or_404(id_cancion)
+        usuario = Usuario.query.get_or_404(id_usuario)
+        usuario.cancionFavorita.delete(cancion)
         db.session.commit()
         return usuario_schema.dump(usuario)

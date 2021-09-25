@@ -32,6 +32,8 @@ class Cancion(db.Model):
     albumes = db.relationship('Album', secondary='album_cancion', back_populates="canciones")
     usuarios = db.relationship('Usuario', secondary='cancion_compartida_usuario', back_populates="CancionesCompartidas")
     favorita = db.relationship('Usuario', secondary='cancion_favorita_usuario', back_populates="cancionFavorita")
+
+
 class Medio(enum.Enum):
    DISCO = 1
    CASETE = 2
@@ -58,6 +60,7 @@ class Usuario(db.Model):
     CancionesCompartidas = db.relationship('Cancion', secondary='cancion_compartida_usuario', back_populates="usuarios")
     AlbumesCompartidos = db.relationship('Album', secondary='album_compartido_usuario', back_populates="usuariosCompartido")
     cancionFavorita = db.relationship('Cancion', secondary='cancion_favorita_usuario', back_populates="favorita")
+
 class EnumADiccionario(fields.Field):
     def _serialize(self, value, attr, obj, **kwargs):
         if value is None:
