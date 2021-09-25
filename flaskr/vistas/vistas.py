@@ -199,6 +199,18 @@ class VistaCancionFavorita(Resource):
     def get(self, id_cancion):
         cancion = Cancion.query.get_or_404(id_cancion)
         return [usuario_schema.dump(nv) for nv in cancion.favorita]
+    
+    def put(self, id_usuario, id_cancion):
+        cancion = Cancion.query.get_or_404(id_cancion)
+        usuario = Usuario.query.get(id_usuario)
+        if usuario is not None:            
+            print(cancion.id)
+            usuario.cancionFavorita.append(cancion)
+            db.session.commit()
+        else:
+            return 'Usuario erróneo',404
+
+        return cancion_schema.dump(cancion) 
 
 
 class VistaComentarioAlbum(Resource):
@@ -221,7 +233,7 @@ class VistaEliminarFavorita(Resource):
     def delete(self, id_usuario, id_cancion):
         cancion = Cancion.query.get_or_404(id_cancion)
         usuario = Usuario.query.get_or_404(id_usuario)
-        usuario.cancionFavorita.delete(cancion)
+        usuario.cancionFavorita.remove(cancion)
         db.session.commit()
         return usuario_schema.dump(usuario)
 
@@ -238,3 +250,4 @@ class VistaComentarioAlbumByIdAlbum(Resource):
         db.session.add(nuevo_comentario)
         db.session.commit()
         return cancion_schema.dump(nuevo_comentario)
+

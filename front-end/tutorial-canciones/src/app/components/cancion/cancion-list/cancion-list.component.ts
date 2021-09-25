@@ -91,7 +91,7 @@ export class CancionListComponent implements OnInit {
 
   eliminarCancion(){
     this.cancionService.eliminarCancion(this.cancionSeleccionada.id)
-    .subscribe(cancion => {
+    .subscribe(_cancion => {
       this.ngOnInit()
       this.showSuccess()
     },
@@ -117,21 +117,29 @@ export class CancionListComponent implements OnInit {
   }
 
   selecionarCancion(indice: number){
-    if (this.canciones[indice].favorita){
-      this.canId = indice + 1
-      this.cancionService.eliminarCancionFavorita(this.userId, this.canId).subscribe
-      (cancion => {
-        this.getCanciones()
+    var cancion = this.canciones[indice];
+    if (!cancion.esCancionFavorita){
+      this.cancionService.asociarCancionFavorita(this.userId, cancion.id)
+      .subscribe
+      (_cancion => {
+        this.ngOnInit()        
+      },
+      error=> {
+        this.showError("Ha ocurrido un error. " + error.message)
       })
     }
   }
 
   deselecionarCancion(indice: number){
-    if (this.canciones[indice].favorita){
-      this.canId = indice + 1
-      this.cancionService.asociarCancionFavorita(this.userId, this.canId).subscribe
-      (cancion => {
-        this.getCanciones()
+    var cancion = this.canciones[indice];
+    if (cancion.esCancionFavorita){
+      this.cancionService.eliminarCancionFavorita(this.userId, cancion.id)
+      .subscribe
+      (_cancion => {
+        this.ngOnInit()        
+      },
+      error=> {
+        this.showError("Ha ocurrido un error. " + error.message)
       })
     }
   }
