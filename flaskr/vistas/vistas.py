@@ -246,8 +246,3 @@ class VistaComentarioAlbum(Resource):
         db.session.add(nuevo_comentario)
         db.session.commit()
         return cancion_schema.dump(nuevo_comentario)
-
-
-class VistaComentario(Resource):
-    def get(self, id_comentario):
-        return comentario_schema.dump(Comentario.query.get_or_404(id_comentario))

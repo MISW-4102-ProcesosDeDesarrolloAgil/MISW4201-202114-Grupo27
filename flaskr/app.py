@@ -14,9 +14,9 @@ from .vistas import \
     VistaAlbumesCompartir, \
     VistaUsuario\
     ,VistaComentario, \
-    VistaComentarioAlbum
+    VistaComentarioAlbum,\
     VistaEliminarFavorita, \
-    VistaCancionFavorita, \
+    VistaCancionFavorita
 from flask_jwt_extended import JWTManager
 from flask_cors import CORS, cross_origin
 
