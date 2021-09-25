@@ -1,3 +1,6 @@
+import { map, retry } from 'rxjs/operators';
+import { Usuario } from './../../usuario/usuario';
+import { MainComponent } from './../../../pages/main/main.component';
 import { Component, OnInit } from '@angular/core';
 import { Cancion } from '../cancion';
 import { CancionService } from '../../../services/cancion.service';
@@ -22,11 +25,12 @@ export class CancionListComponent implements OnInit {
 
   userId: number
   token: string
+  canId: number
   canciones: Array<Cancion>
   mostrarCanciones: Array<Cancion>
+  cancionesFavoritas: Array<Cancion>
   cancionSeleccionada: Cancion
   indiceSeleccionado: number = 0
-  cancionMarcada: number = 0
 
   ngOnInit() {
     const userInfo = this.userService.getUserInfo();
@@ -44,7 +48,9 @@ export class CancionListComponent implements OnInit {
     .subscribe(canciones => {
       this.canciones = canciones
       this.mostrarCanciones = canciones
-      this.validarCompartidaConmigo(this.mostrarCanciones) 
+      this.cancionesFavoritas = canciones
+      this.validarCompartidaConmigo(this.mostrarCanciones)
+      this.esFavorita(this.cancionesFavoritas)
       this.onSelect(this.mostrarCanciones[0], 0)
     })
   }
@@ -59,7 +65,12 @@ export class CancionListComponent implements OnInit {
     error => {
       this.showError(`Ha ocurrido un error: ${error.message}`)
     })
+  }
 
+  esFavorita(canciones: Array<Cancion>) {
+    for (var i in canciones) {
+      canciones[i].esCancionFavorita = canciones[i].favorita.includes(this.userId);
+    }
   }
 
   buscarCancion(busqueda: string){
@@ -76,7 +87,7 @@ export class CancionListComponent implements OnInit {
     for (var i in canciones) {
         canciones[i].estaCompartidaConmigo = canciones[i].usuarios.includes(this.userId);
     }
- }
+  }
 
   eliminarCancion(){
     this.cancionService.eliminarCancion(this.cancionSeleccionada.id)
@@ -103,5 +114,25 @@ export class CancionListComponent implements OnInit {
 
   irVentanaCompartirCancion(cancionId: number){
     this.routerPath.navigate([`/canciones/compartir/${cancionId}`])
+  }
+
+  selecionarCancion(indice: number){
+    if (this.canciones[indice].favorita){
+      this.canId = indice + 1
+      this.cancionService.eliminarCancionFavorita(this.userId, this.canId).subscribe
+      (cancion => {
+        this.getCanciones()
+      })
+    }
+  }
+
+  deselecionarCancion(indice: number){
+    if (this.canciones[indice].favorita){
+      this.canId = indice + 1
+      this.cancionService.asociarCancionFavorita(this.userId, this.canId).subscribe
+      (cancion => {
+        this.getCanciones()
+      })
+    }
   }
 }

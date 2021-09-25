@@ -11,3 +11,11 @@
 .selected{
   background-color: #ececec;
 }
+
+.fa-heart {
+  color: red;
+}
+
+.fa-heart-o {
+  color: black;
+}

@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from "ngx-toastr";
 import { UserService } from 'src/app/services/user.service';
-import { Album, Cancion } from '../album';
+import { Album } from '../album';
+import { Cancion } from '../../cancion/cancion';
 import { AlbumService } from '../../../services/album.service';
 
 @Component({

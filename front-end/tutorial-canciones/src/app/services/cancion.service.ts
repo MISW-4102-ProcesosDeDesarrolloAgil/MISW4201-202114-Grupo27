@@ -4,6 +4,7 @@ import { environment } from "../../environments/environment"
 import { Observable } from 'rxjs';
 import { Cancion } from '../../app/components/cancion/cancion';
 import { Album } from '../../app/components/album/album';
+import { Usuario } from '../components/usuario/usuario';
 
 @Injectable({
   providedIn: 'root'
@@ -49,4 +50,15 @@ export class CancionService {
     return this.http.put<Cancion>(`${this.backUrl}/cancion/${cancionId}/compartir`, {"emails" : emails})
   }
 
+  cancionFavorita(cancionId: number): Observable<Cancion>{
+    return this.http.get<Cancion>(`${this.backUrl}/cancion/${cancionId}/favorita`)
+  }
+
+  asociarCancionFavorita(userId: number, cancionId: number): Observable<Cancion>{
+    return this.http.put<Cancion>(`${this.backUrl}/cancion/${cancionId}/favorita`, {"id_usuario": userId})
+  }
+
+  eliminarCancionFavorita(userId: number, cancionId: number): Observable<Cancion>{
+    return this.http.delete<Cancion>(`${this.backUrl}/${userId}/${cancionId}/favorita/`)
+  }
 }

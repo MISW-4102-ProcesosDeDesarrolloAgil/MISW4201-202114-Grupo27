@@ -18,6 +18,7 @@ export class UsuarioHeaderComponent implements OnInit {
     this.usuarioService.userGet(this.usuario_id)
     .subscribe(
       usuario => {
+        console.log(usuario)
         this.usuario = usuario;
       }
     );
