@@ -60,7 +60,7 @@ class Usuario(db.Model):
     CancionesCompartidas = db.relationship('Cancion', secondary='cancion_compartida_usuario', back_populates="usuarios")
     AlbumesCompartidos = db.relationship('Album', secondary='album_compartido_usuario', back_populates="usuariosCompartido")
     cancionFavorita = db.relationship('Cancion', secondary='cancion_favorita_usuario', back_populates="favorita")
-
+    
 class EnumADiccionario(fields.Field):
     def _serialize(self, value, attr, obj, **kwargs):
         if value is None:
